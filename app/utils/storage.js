@@ -1,0 +1,1 @@
+//initial logic for storage handle
