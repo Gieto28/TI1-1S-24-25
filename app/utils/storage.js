@@ -1,10 +1,12 @@
 //initial logic for storage handle
 export const storageHandler = {
     setItem(key, value) {
+        //encrypt
         localStorage
             .setItem(key, JSON.stringify(value));
     },
     getItem(key) {
+        //decrypt
         return JSON.parse(localStorage
             .getItem(key));
     },
@@ -16,3 +18,5 @@ export const storageHandler = {
         localStorage.clear();
     }
 }
+
+//ex: storageHandler.setItem(key, value)
