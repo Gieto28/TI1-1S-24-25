@@ -36,4 +36,4 @@ export const setLanguage = (lang) => {
 };
 
 // Function to retrieve translations
-export const translate = (key) => i18n.t(key);
+export const t = (key) => i18n.t(key);
