@@ -1,1 +1,0 @@
-//initial JS file for home page
