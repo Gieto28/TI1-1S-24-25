@@ -1,11 +1,15 @@
 {
   "name": "ti1-1s-24-25",
   "version": "1.0.0",
-  "description": "Projeto de TI 1º semestre 2024/2025",
+  "description": "Projeto de TI I do 1º semestre 2024/2025",
   "main": "./app/script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Miguel Angelo/André Fernandes/João Eduardo",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "vanilla-i18n": "^1.0.8"
+  }
 }
