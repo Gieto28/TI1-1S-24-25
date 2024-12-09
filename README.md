@@ -2,9 +2,9 @@
 Projeto de TI 1º semestre 2024/2025
 
 Projeto feito por:
-Miguel Silva
-André Fernandes
-João Eduardo
+Miguel Silva - miguel.angelosilva@my.istec.pt
+André Fernandes - andre.rodriguesfernandes@my.istec.pt
+João Eduardo - joao.espada@my.istec.pt
 
 Professora: 
 Carla Silva
@@ -60,3 +60,7 @@ Toast message - Component
 
 
 arquitetura:
+
+
+Canva:
+https://www.canva.com/design/DAGYoE9i2pw/oNgbH23DMkGzBxKv_xYIuA/edit
