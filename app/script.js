@@ -11,9 +11,9 @@ import { storageHandler } from "../app/utils/storage.js";
 
     if (!currentPage) {
         loadPage("home");
+    } else {
+        loadPage(currentPage);
     }
-
-    loadPage(currentPage);
 
     // Initialize feature flags or any other setup
     intializeFeatureFlags();
