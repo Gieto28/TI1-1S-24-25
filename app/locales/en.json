@@ -1,5 +1,30 @@
 {
     "home": {
+        "title": "Home",
         "welcomeMessage": "Welcome to our application"
+    },
+    "form": {
+        "title": "Form"
+    },
+    "ourWorld": {
+        "aboutUs": "About us",
+        "colletions": "Collections",
+        "envPhilosophy": "Environmental philosophy",
+        "artistCollabs": "Artist collaborations"
+    },
+    "assistance": {
+        "contactUs": "Contact us",
+        "sizeGuide": "Size Guide",
+        "shippingInfo": "Shipping Information",
+        "returns": "Returns & Exchanges",
+        "payment": "Payment"
+    },
+    "careers": {
+        "jobs": "Jobs"
+    },
+    "newsletter": {
+        "signUp": "SING UP TO OUR NEWSLETTER",
+        "email": "Email address",
+        "subscribe": "Subscribe"
     }
 }

@@ -1,6 +1,6 @@
 import { storageHandler } from "../utils/storage.js";
 
-// Helper function to load an external HTML file and insert it into a placeholder
+// Função para carregar um ficheiro HTML externo e inseri-lo como um placeholder
 export function loadComponent(selector, url) {
     fetch(url)
       .then(response => response.text())
@@ -10,9 +10,9 @@ export function loadComponent(selector, url) {
       .catch(error => console.error('Error loading component:', error));
 }
 
-// Function to dynamically load the components of each page
+// Função para carregar os componentes de cada página dinamicamente
 export function loadPage(pageName) {
-  //write in local storage
+  // Escreve em local storage
   storageHandler.setItem("currentPage", pageName)
   const pageUrl = `/app/pages/${pageName}/index.html`;
   loadComponent('body', pageUrl);

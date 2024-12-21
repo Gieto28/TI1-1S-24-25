@@ -1,5 +1,30 @@
 {
     "home": {
+        "title": "Início",
         "welcomeMessage": "Bem-vindo à nossa aplicação"
+    },
+    "form": {
+        "title": "Formulário"
+    },
+    "ourWorld": {
+        "aboutUs": "Sobre nós",
+        "colletions": "Coleções",
+        "envPhilosophy": "Filosofia ambiental",
+        "artistCollabs": "Colaborações com artistas"
+    },
+    "assistance": {
+        "contactUs": "Contacte-nos",
+        "sizeGuide": "Guia de tamanhos",
+        "shippingInfo": "Informações de envio",
+        "returns": "Devoluções e trocas",
+        "payment": "Pagamento"
+    },
+    "careers": {
+        "jobs": "Empregos"
+    },
+    "newsletter": {
+        "signUp": "ASSINE A NOSSA NEWSLETTER",
+        "email": "Endereço de e-mail",
+        "subscribe": "Subscrever"
     }
 }
