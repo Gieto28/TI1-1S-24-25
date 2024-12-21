@@ -2,6 +2,10 @@ import { loadComponent, loadPage } from "../app/utils/components.js"
 import { intializeFeatureFlags } from "../app/utils/config.js"
 import { storageHandler } from "../app/utils/storage.js";
 
+window.loadPage = (pageName) => {
+  loadPage(pageName);
+};
+
 (() => {
     // Carrega o header e o footer por defeito
     loadComponent("header", "/app/components/header/index.html");
@@ -9,6 +13,8 @@ import { storageHandler } from "../app/utils/storage.js";
 
     const currentPage = storageHandler.getItem('currentPage');
 
+
+    // Carrega a página atual ou a página inicial
     if (!currentPage) {
         loadPage("home");
     } else {
