@@ -21,6 +21,6 @@ window.loadPage = (pageName) => {
         loadPage(currentPage);
     }
 
-    // Initialize feature flags or any other setup
+    // Inicializa as Feature Flags
     intializeFeatureFlags();
 })();

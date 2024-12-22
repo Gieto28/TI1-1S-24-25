@@ -1,10 +1,13 @@
 export const config = {
+    // Configurações de recursos e aparência
     featureFlags: {
-        formPage: true,
+        formPage: true, // Flag que habilita/desabilita a funcionalidade da página de formulário
     },
-    isLightMode: true,
-    language: "en",
-    languages: ["en", "es", "pt"],
+    isLightMode: true, // Define se o tema padrão é o modo claro
+    language: "en", // Idioma padrão da aplicação
+    languages: ["en", "es", "pt"], // Idiomas suportados
+
+    // Lista de produtos disponíveis na aplicação, com id, nome, preço, desconto, tipo de moeda, imagem e descrição de cada produto
     products: [
         {
             id: 1,

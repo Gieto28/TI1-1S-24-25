@@ -1,6 +1,6 @@
 
 
-/* Create dinamic navlinks */
+/* Cria navlinks dinâmicos */
 
 import { getCartAmmount } from "../../utils/shop.js";
 

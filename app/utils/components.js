@@ -23,6 +23,7 @@ export const loadPage = async (pageName) => {
   await loadPageContent[pageName]?.(pageName);
 };
 
+// Objeto com funções para carregar conteúdos adicionais de páginas
 const loadPageContent = {
   shop: () => loadShopContent()
 };
