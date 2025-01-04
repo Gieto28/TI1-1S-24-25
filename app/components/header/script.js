@@ -1,6 +1,4 @@
-
-
-/* Cria navlinks dinâmicos */
+/* Atualiza o número de itens adicionados ao carrinho */
 
 import { getCartAmmount } from "../../utils/shop.js";
 
