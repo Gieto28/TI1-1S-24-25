@@ -1,7 +1,7 @@
 import { config } from "../../../config.js";
 import { addItemToCart } from "../../utils/shop.js";
 
-/* Create dinamic navlinks */
+/* Cria navlinks dinâmicos */
 
 export const loadShopContent = () => {
   renderProducts(config.products);
@@ -26,21 +26,22 @@ export const createCard = (product, addItemToCartCallback) => {
   `;
 
   const button = card.querySelector("button");
-  // Add event listener to button
+
+  // Adiciona um Event Listener ao botão que chama a função de adicionar item ao carrinho
   button.addEventListener("click", () => addItemToCartCallback(product));
 
-  return card;
+  return card; // Retorna o card do produto
 };
 
 export const renderProducts = (products) => {
   const productsContainer = document.getElementById("shopProducts");
 
-  // Clear the container before rendering
+  // Limpa o container antes de adicionar novos produtos
   productsContainer.innerHTML = "";
 
-  // Append each card to the container
+  // Cria e acrescenta cada card do produto ao container
   products.forEach((product) => {
-    const card = createCard(product, addItemToCart);
-    productsContainer.appendChild(card);
+    const card = createCard(product, addItemToCart); // Cria o card do produto
+    productsContainer.appendChild(card); // Adiciona o card ao container
   });
 };

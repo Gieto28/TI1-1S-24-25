@@ -26,5 +26,3 @@ export const storageHandler = {
         localStorage.clear();
     }
 }
-
-//ex: storageHandler.setItem(key, value)
