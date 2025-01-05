@@ -1,9 +1,24 @@
 import { config } from "../../../config.js";
+import { createCarousel } from "../../components/carousel/script.js";
 import { addItemToCart } from "../../utils/shop.js";
 
 /* Cria navlinks dinâmicos */
 
 export const loadShopContent = () => {
+
+  const shopBanner = document.getElementById("shopBanner");
+
+  const carouselImages = [
+    "../../app/assets/carousel/shop/1.png",
+    "../../app/assets/carousel/shop/2.jpg",
+  ]
+  
+  const carouselId = "shopCarousel";
+
+  const shopCarousel = createCarousel(carouselImages, carouselId);
+
+  shopBanner.innerHTML = shopCarousel;
+
   renderProducts(config.products);
 };
 
