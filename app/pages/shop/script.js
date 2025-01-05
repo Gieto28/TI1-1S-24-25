@@ -2,30 +2,35 @@ import { config } from "../../../config.js";
 import { createCarousel } from "../../components/carousel/script.js";
 import { addItemToCart } from "../../utils/shop.js";
 
-/* Cria navlinks dinâmicos */
-
 export const loadShopContent = () => {
-
+  // Obtém o elemento do banner da loja através do id
   const shopBanner = document.getElementById("shopBanner");
 
+  // Define as imagens do carrossel que vão ser exibidas na loja
   const carouselImages = [
     "../../app/assets/carousel/shop/1.png",
     "../../app/assets/carousel/shop/2.jpg",
   ]
   
+  // Define o id para o carrossel
   const carouselId = "shopCarousel";
 
+  // Cria o carrossel usando as imagens e respetivo id
   const shopCarousel = createCarousel(carouselImages, carouselId);
 
+  // Adiciona o carrossel criado ao conteúdo do banner da loja
   shopBanner.innerHTML = shopCarousel;
 
+  // Renderiza os produtos disponíveis na loja
   renderProducts(config.products);
 };
 
 export const createCard = (product, addItemToCartCallback) => {
+  // Cria um elemento div para representar o card do produto
   const card = document.createElement("div");
   card.classList.add("col-12", "col-sm-6", "col-md-4", "col-xl-3", "col-xxl-2", "mb-4");
 
+  // Define a apresentação do conteúdo do cartão em html, com imagem, nome, descrição, preço e botão de adicionar item ao carrinho
   card.innerHTML = `
       <div class="card h-100 d-flex flex-column">
         <img src="${product.image}" alt="${product.name}" class="card-img-top">

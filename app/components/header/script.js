@@ -1,18 +1,18 @@
-// Updates the number of items in the cart
+// Atualiza o número de itens do carrinho de compras
 import { getCartAmmount } from "../../utils/shop.js";
 
-// Function to update the cart count
+// Função para atualizar o contador de itens do carrinho
 export const updateCart = () => {
-  const cartCount = document.getElementById('cartCount'); // Get the current number of items in the cart
-  let currentAmount = parseInt(cartCount.textContent); // Convert the current cart count to an integer
-  currentAmount = getCartAmmount(); // Update the count with the current number of items in the cart
-  cartCount.textContent = currentAmount; // Set the updated count in the badge
+  const cartCount = document.getElementById('cartCount'); // Vai buscar o número atual de itens no carrinho
+  let currentAmount = parseInt(cartCount.textContent); // Converte o número atual do contador de itens do carrinho para inteiro
+  currentAmount = getCartAmmount(); // Atualiza o contador com o número atual de itens presentes no carrinho
+  cartCount.textContent = currentAmount; // Define o contador de itens apresentado ao utilizador para o número atualizado de itens presentes no carrinho
 }
 
-// Function to increment the cart count by 1
+// Função para incrementar o contador do carrinho por 1
 export const incrementCartAmount = () => {
-  const cartCount = document.getElementById('cartCount'); // Get the cart count element
-  let currentAmount = parseInt(cartCount.textContent); // Get the current count as an integer
-  currentAmount += 1; // Increase the count by 1
-  cartCount.textContent = currentAmount; // Update the badge with the new count
+  const cartCount = document.getElementById('cartCount'); // Vai buscar o elemento do contador do carrinho
+  let currentAmount = parseInt(cartCount.textContent); // Vai buscar o contador atual como um valor inteiro
+  currentAmount += 1; // Aumenta o valor do contador por 1
+  cartCount.textContent = currentAmount; // Atualiza o valor de itens no carrinho com o novo valor do contador
 };
