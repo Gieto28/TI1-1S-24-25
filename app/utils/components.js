@@ -1,3 +1,5 @@
+import { closeNavabrCollapse } from "../components/header/script.js";
+import { loadContactContent } from "../pages/contact/script.js";
 import { loadShopContent } from "../pages/shop/script.js";
 import { storageHandler } from "../utils/storage.js";
 
@@ -15,8 +17,10 @@ export async function loadComponent(selector, url) {
 export const loadPage = async (pageName) => {
   console.log("Loading page:", pageName);
 
+  closeNavabrCollapse();
+
   storageHandler.setItem("currentPage", pageName);
-  
+
   const pageUrl = `/app/pages/${pageName}/index.html`;
   await loadComponent("body", pageUrl);
 
@@ -25,5 +29,6 @@ export const loadPage = async (pageName) => {
 
 // Objeto com funções para carregar conteúdos adicionais de páginas
 const loadPageContent = {
-  shop: () => loadShopContent()
+  shop: () => loadShopContent(),
+  contact: () => loadContactContent(),
 };

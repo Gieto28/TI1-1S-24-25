@@ -1,26 +1,30 @@
-import { loadComponent, loadPage } from "../app/utils/components.js"
-import { intializeFeatureFlags } from "../app/utils/config.js"
+import { loadComponent, loadPage } from "../app/utils/components.js";
+import { intializeFeatureFlags } from "../app/utils/config.js";
 import { storageHandler } from "../app/utils/storage.js";
+import { loadHeaderContent } from "./components/header/script.js";
 
 window.loadPage = (pageName) => {
   loadPage(pageName);
 };
 
-(() => {
-    // Carrega o header e o footer por defeito
-    loadComponent("header", "/app/components/header/index.html");
-    loadComponent("footer", "/app/components/footer/index.html");
+// IIFE para carregar o header e o footer por defeito
+(async () => {
+  // Carrega o header e o footer por defeito
+  await loadComponent("header", "/app/components/header/index.html");
 
-    const currentPage = storageHandler.getItem('currentPage');
+  loadHeaderContent();
 
+  await loadComponent("footer", "/app/components/footer/index.html");
 
-    // Carrega a página atual ou a página inicial
-    if (!currentPage) {
-        loadPage("home");
-    } else {
-        loadPage(currentPage);
-    }
+  const currentPage = storageHandler.getItem("currentPage");
 
-    // Inicializa as Feature Flags
-    intializeFeatureFlags();
+  // Carrega a página atual ou a página inicial
+  if (!currentPage) {
+    loadPage("home");
+  } else {
+    loadPage(currentPage);
+  }
+
+  // Inicializa as Feature Flags
+  intializeFeatureFlags();
 })();

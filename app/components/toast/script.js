@@ -1,75 +1,89 @@
-// Variável global para armazenar o ID do intervalo
-let toastTimer; // Para armazenar o temporizador do toast
+// Variable for the toast timer
+let toastTimer;
 
-// Função que inicia um timer para atualizar o texto do tempo no elemento do toast
-const startClockForToast = (element) => {
-    let time = 0;
-
-    // Limpa os intervalos existentes para evitar múltiplos clocks
-    if (toastTimer) {
-        clearInterval(toastTimer);
-    }
-
-    // Função para atualizar o tempo mostrado no elemento
-    const updateTime = () => {
-        if (time === 0) {
-            element.textContent = "now"; // Mostra noww quando o tempo é zero
-        } else {
-            element.textContent = `${time} min ago`; // Mostra o tempo em minutos passados
-        }
-        time += 1; // Incrementa o tempo
-    };
-
-    // Atualiza o tempo e inicia o intervalo que executa a cada minuto
-    updateTime();
-    toastTimer = setInterval(updateTime, 60000);
-
-    return time;
+// Function to dynamically create the HTML structure for a toast
+const createToastHTML = (id, title, message, imageUrl) => {
+    return `
+        <div id="${id}" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                ${imageUrl ? `<img src="${imageUrl}" class="rounded me-2" alt="..." />` : ''}
+                <strong class="me-auto">${title}</strong>
+                <small class="toast-time">now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">${message}</div>
+        </div>
+    `;
 };
 
-// Função para exibir um toast com título, mensagem e atualização de tempo
-export const showToast = (title, message) => {
-    const toastTrigger = document.getElementById('liveToastBtn'); // Botão que ativa o toast
-    const toastElement = document.getElementById('liveToast'); // Elemento principal do toast
+// Function to start the clock for the toast time
+const startClockForToast = (toastElement) => {
+    let time = 0;
+    const timeElement = toastElement.querySelector('.toast-time');
 
-    if (!toastElement) return; // Sai se o elemento do toast não existir
+    if (toastTimer) clearInterval(toastTimer);
 
-    const toastTitle = toastElement.querySelector("#toastTitle"); // Título do toast
-    const toastMessage = toastElement.querySelector("#toastMessage"); // Mensagem do toast
-    const toastTime = toastElement.querySelector("#toastTime"); // Elemento do tempo
+    const updateTime = () => {
+        timeElement.textContent = time === 0 ? 'now' : `${time} min ago`;
+        time += 1;
+    };
 
-    if (toastTitle && toastMessage && toastTime) {
-        toastTitle.textContent = title; // Define o título
-        toastMessage.textContent = message; // Define a mensagem
-        startClockForToast(toastTime); // Inicia o timer para o tempo
+    updateTime();
+    toastTimer = setInterval(updateTime, 60000);
+};
+
+// Function to show a toast with dynamic content
+export const showToast = (title, message, imageUrl = null) => {
+    const container = document.getElementById('toastContainer');
+    
+    if (!container) return;
+
+    // Generate a unique ID for the new toast
+    const toastId = `toast-${Date.now()}`;
+    const toastHTML = createToastHTML(toastId, title, message, imageUrl);
+
+    // Add the new toast to the container
+    container.insertAdjacentHTML('beforeend', toastHTML);
+    const toastElement = document.getElementById(toastId);
+
+    if (toastElement) {
+        const toastInstance = bootstrap.Toast.getOrCreateInstance(toastElement);
+        startClockForToast(toastElement);
+
+        // Show the toast
+        toastInstance.show();
+
+        // Auto-hide after 7 seconds
+        setTimeout(() => {
+            toastInstance.hide();
+
+            // Remove the toast element from the DOM after hiding
+            toastElement.addEventListener('hidden.bs.toast', () => {
+                toastElement.remove();
+            });
+        }, 7000);
     }
 
-    if (toastTrigger) {
-        const toastInstance = bootstrap.Toast.getOrCreateInstance(toastElement); // Obtém ou cria uma instância do toast do Bootstrap
+    // Adjust positioning for mobile and desktop
+    container.className = window.innerWidth < 768 
+        ? 'toast-container position-fixed top-0 start-50 translate-middle-x p-3'
+        : 'toast-container position-fixed top-0 end-0 p-3';
+};
 
-        // Adiciona evento de click para exibir o toast
-        toastTrigger.addEventListener('click', () => {
-            toastInstance.show();
+// Function to hide all toasts
+export const hideAllToasts = () => {
+    const container = document.getElementById('toastContainer');
+    if (container) {
+        const toasts = container.querySelectorAll('.toast');
+        toasts.forEach((toast) => {
+            const toastInstance = bootstrap.Toast.getOrCreateInstance(toast);
+            toastInstance.hide();
         });
     }
 
-    // Esconde o toast automaticamente após 7 segundos
-    setTimeout(() => {
-        toastInstance.hide();
-    }, 7000);
-};
-
-// Função para esconder o toast manualmente
-export const hideToast = () => {
-    const toastElement = document.getElementById('liveToast'); // Obtém o elemento do toast
-    if (toastElement) {
-        const toastInstance = bootstrap.Toast.getOrCreateInstance(toastElement); // Obtém ou cria uma instância do toast do Bootstrap
-        toastInstance.hide(); // Esconde o toast
-    }
-
-    // Limpa o timer se o toast for escondido
+    // Clear the timer
     if (toastTimer) {
-        clearInterval(toastTimer); // Para o timer do tempo
-        toastTimer = null; // Faz reset à variável global
+        clearInterval(toastTimer);
+        toastTimer = null;
     }
 };
