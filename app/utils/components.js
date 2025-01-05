@@ -5,6 +5,9 @@ import { storageHandler } from "../utils/storage.js";
 
 // Função para carregar um ficheiro HTML externo e inseri-lo como um placeholder
 export async function loadComponent(selector, url) {
+  console.log("location", window.location.origin);
+  console.log("location", window.location);
+
   return fetch(url)
     .then((response) => response.text())
     .then((data) => {
