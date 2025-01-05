@@ -3,6 +3,9 @@ import { createCarousel } from "../../components/carousel/script.js";
 import { addItemToCart } from "../../utils/shop.js";
 
 export const loadShopContent = () => {
+  renderCarousel(); // Renderiza o carrossel da loja
+  renderProducts(config.products);// Renderiza os produtos disponíveis na loja
+  
   // Obtém o elemento do banner da loja através do id
   const shopBanner = document.getElementById("shopBanner");
 
@@ -24,8 +27,7 @@ export const loadShopContent = () => {
 
   // Renderiza os produtos disponíveis na loja
   renderProducts(config.products);
-  renderCarousel(); // Renderiza o carrossel da loja
-  renderProducts(config.products);// Renderiza os produtos disponíveis na loja
+  
 };
 
 const createCard = (product, addItemToCartCallback) => {
