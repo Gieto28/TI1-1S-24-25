@@ -9,8 +9,10 @@ João Eduardo - joao.espada@my.istec.pt
 Professora: 
 Carla Silva
 
-
 Tema: Barbershop
+
+Para iniciar o Projeto basta iniciar o projeto com o live server da extensão do vsCode e selecionar a App para entrar no Projeto.
+Ou então 
 
 Normas de programação:
 css class:
