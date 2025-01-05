@@ -8,8 +8,9 @@ export const loadShopContent = () => {
 
   // Define as imagens do carrossel que vão ser exibidas na loja
   const carouselImages = [
-    "../../app/assets/carousel/shop/1.png",
-    "../../app/assets/carousel/shop/2.jpg",
+    "../../app/assets/carousel/shop/products_1.jpg",
+    "../../app/assets/carousel/shop/products_2.jpg",
+    "../../app/assets/carousel/shop/products_3.jpg",
   ]
   
   // Define o id para o carrossel
@@ -38,9 +39,8 @@ export const createCard = (product, addItemToCartCallback) => {
           <h5 class="card-title">${product.name}</h5>
           <p class="card-text">${product.description}</p>
           </div>
-          <div class="card-footer mt-auto">
-          <p class="card-text mb-2">${product.price} ${product.currency}</p>
-          <button class="btn btn-primary w-100">Add to cart</button>
+          <div class="card-footer p-0 mt-auto">
+          <button class="btn btn-secondary w-100 rounded-top-0">Add to cart <strong>${product.price} ${product.currency}</strong> </button>
         </div>
       </div>
   `;
