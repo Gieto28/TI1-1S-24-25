@@ -24,9 +24,11 @@ export const loadShopContent = () => {
 
   // Renderiza os produtos disponíveis na loja
   renderProducts(config.products);
+  renderCarousel(); // Renderiza o carrossel da loja
+  renderProducts(config.products);// Renderiza os produtos disponíveis na loja
 };
 
-export const createCard = (product, addItemToCartCallback) => {
+const createCard = (product, addItemToCartCallback) => {
   // Cria um elemento div para representar o card do produto
   const card = document.createElement("div");
   card.classList.add("col-12", "col-sm-6", "col-md-4", "col-xl-3", "col-xxl-2", "mb-4");
@@ -53,7 +55,7 @@ export const createCard = (product, addItemToCartCallback) => {
   return card; // Retorna o card do produto
 };
 
-export const renderProducts = (products) => {
+const renderProducts = (products) => {
   const productsContainer = document.getElementById("shopProducts");
 
   // Limpa o container antes de adicionar novos produtos
@@ -64,4 +66,24 @@ export const renderProducts = (products) => {
     const card = createCard(product, addItemToCart); // Cria o card do produto
     productsContainer.appendChild(card); // Adiciona o card ao container
   });
+};
+
+const renderCarousel = () => {
+  // Obtém o elemento do banner da loja através do id
+  const shopBanner = document.getElementById("shopBanner");
+
+  // Define as imagens do carrossel que vão ser exibidas na loja
+  const carouselImages = [
+    "../../app/assets/carousel/shop/1.png",
+    "../../app/assets/carousel/shop/2.jpg",
+  ]
+  
+  // Define o id para o carrossel
+  const carouselId = "shopCarousel";
+
+  // Cria o carrossel usando as imagens e respetivo id
+  const shopCarousel = createCarousel(carouselImages, carouselId);
+
+  // Adiciona o carrossel criado ao conteúdo do banner da loja
+  shopBanner.innerHTML = shopCarousel;
 };

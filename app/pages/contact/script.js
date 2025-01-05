@@ -1,7 +1,14 @@
 import { showToast } from "../../components/toast/script.js";
 
+export const loadContactContent = () => {
+    const form = document.getElementById('contactForm');
+
+    form.addEventListener('submit', validateForm);
+}
+
 export const validateForm = (event) => {
     event.preventDefault();
+
     let isValid = true;
 
     document.getElementById('fullnameError').textContent = '';
@@ -20,15 +27,21 @@ export const validateForm = (event) => {
     }
 
     const message = document.getElementById('message').value;
-    if (!message || message.length < 30) {
+    if (!message || message.length < 15) {
         isValid = false;
     }
 
     if (isValid) {
         showToast('Success', 'Your message has been sent successfully.');
+
+        cleanForm();
     } else {
         showToast('Error', 'Please fill in the required fields correctly.');
     }
-
-    return false;
 };
+
+const cleanForm = () => {
+    document.getElementById('fullname').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('message').value = '';
+}
