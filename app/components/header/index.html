@@ -1,22 +1,39 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <button class="nav-link" href="#" onclick="loadPage('home')">
-      <img src="/app/assets/logos/logo-light-mode.png" alt="Logo" class="img-fluid" width="100">
-    </button>    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+  <div class="container">
+    <button class="nav-link d-flex align-items-center fs-5" href="#" onclick="loadPage('home')">
+      <img src="/app/assets/logos/banner-light-mode.png" alt="Logo" class="img-fluid" width="70">
+      <span class="ms-2 fw-bold">ChopChop Barbers</span>
+    </button>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
-    <!-- Botões da navbar no Header -->
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav" id="navBarNav">
-        <button class="nav-link" href="#" onclick="loadPage('home')">Home</button>
-        <button class="nav-link" href="#" onclick="loadPage('form')">Form</button>
-        <button class="nav-link" href="#" onclick="loadPage('shop')">shop</button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto d-flex justify-content-center w-100">
+        <li class="nav-item">
+          <button class="nav-link fs-5" href="#" onclick="loadPage('home')">Home</button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link fs-5" href="#" onclick="loadPage('form')">Appointments</button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link fs-5" href="#" onclick="loadPage('shop')">Shop</button>
+        </li> <li class="nav-item">
+          <button class="nav-link fs-5" href="#" onclick="loadPage('home')">Services</button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link fs-5" href="#" onclick="loadPage('form')">About Us</button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link fs-5" href="#" onclick="loadPage('shop')">Contact Us</button>
+        </li>
+      </ul>
+      <div id="cartAmmount" class="d-flex align-items-center position-relative">
+        <i class="bi bi-cart-fill fs-4"></i>
+        <span id="cartCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+          0
+        </span>
       </div>
     </div>
   </div>
-
-  <!-- Div para apresentar a quantidade de itens adicionados ao carrinho -->
-  <div id="cartAmmount"></div>
 </nav>
