@@ -4,36 +4,20 @@ import { addItemToCart } from "../../utils/shop.js";
 
 export const loadShopContent = () => {
   renderCarousel(); // Renderiza o carrossel da loja
-  renderProducts(config.products);// Renderiza os produtos disponíveis na loja
-  
-  // Obtém o elemento do banner da loja através do id
-  const shopBanner = document.getElementById("shopBanner");
-
-  // Define as imagens do carrossel que vão ser exibidas na loja
-  const carouselImages = [
-    "../../app/assets/carousel/shop/products_1.jpg",
-    "../../app/assets/carousel/shop/products_2.jpg",
-    "../../app/assets/carousel/shop/products_3.jpg",
-  ]
-  
-  // Define o id para o carrossel
-  const carouselId = "shopCarousel";
-
-  // Cria o carrossel usando as imagens e respetivo id
-  const shopCarousel = createCarousel(carouselImages, carouselId);
-
-  // Adiciona o carrossel criado ao conteúdo do banner da loja
-  shopBanner.innerHTML = shopCarousel;
-
-  // Renderiza os produtos disponíveis na loja
-  renderProducts(config.products);
-  
+  renderProducts(config.products); // Renderiza os produtos disponíveis na loja
 };
 
 const createCard = (product, addItemToCartCallback) => {
   // Cria um elemento div para representar o card do produto
   const card = document.createElement("div");
-  card.classList.add("col-12", "col-sm-6", "col-md-4", "col-xl-3", "col-xxl-2", "mb-4");
+  card.classList.add(
+    "col-12",
+    "col-sm-6",
+    "col-md-4",
+    "col-xl-3",
+    "col-xxl-2",
+    "mb-4"
+  );
 
   // Define a apresentação do conteúdo do cartão em html, com imagem, nome, descrição, preço e botão de adicionar item ao carrinho
   card.innerHTML = `
@@ -76,10 +60,11 @@ const renderCarousel = () => {
 
   // Define as imagens do carrossel que vão ser exibidas na loja
   const carouselImages = [
-    "../../app/assets/carousel/shop/1.png",
-    "../../app/assets/carousel/shop/2.jpg",
-  ]
-  
+    "../../app/assets/carousel/shop/products_1.jpg",
+    "../../app/assets/carousel/shop/products_2.jpg",
+    "../../app/assets/carousel/shop/products_3.jpg",
+  ];
+
   // Define o id para o carrossel
   const carouselId = "shopCarousel";
 
