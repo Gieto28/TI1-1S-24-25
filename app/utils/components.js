@@ -8,7 +8,7 @@ export async function loadComponent(selector, url) {
   console.log("location", window.location.origin);
   console.log("location", window.location);
 
-  return fetch(url)
+  return fetch("/TI1-1S-24-25" + url)
     .then((response) => response.text())
     .then((data) => {
       document.getElementById(selector).innerHTML = data;
