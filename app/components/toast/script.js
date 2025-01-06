@@ -67,7 +67,7 @@ export const showToast = (title, message, imageUrl = null) => {
     // Adjust positioning for mobile and desktop
     container.className = window.innerWidth < 768 
         ? 'toast-container position-fixed top-0 start-50 translate-middle-x p-3'
-        : 'toast-container position-fixed top-0 end-0 p-3';
+        : 'toast-container position-fixed left-0 bottom-0 p-3';
 };
 
 // Function to hide all toasts

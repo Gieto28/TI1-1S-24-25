@@ -82,7 +82,7 @@ export const config = {
     {
       id: 8,
       name: "Wahl Senior Cordless Hair Clipper",
-      price: "230.00",
+      price: "230.14",
       discount: 10,
       currency: "€",
       image: "assets/products/8.jpg",
@@ -121,7 +121,7 @@ export const config = {
     {
       id: 12,
       name: "Babyliss Pro Skeleton Trimmer",
-      price: "130.00",
+      price: "130.11",
       discount: 15,
       currency: "€",
       image: "assets/products/12.jpg",
