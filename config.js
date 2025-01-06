@@ -1,23 +1,37 @@
-export const config = {
-  // Configurações de recursos e aparência
-  featureFlags: {
-    formPage: true, // Flag que habilita/desabilita a funcionalidade da página de formulário
-  },
-  isLightMode: true, // Define se o tema padrão é o modo claro
-  language: "en", // Idioma padrão da aplicação
-  languages: ["en", "es", "pt"], // Idiomas suportados
+/* 
+This File: E-commerce Product Configuration and Appearance Settings
 
-  // Lista de produtos disponíveis na aplicação, com id, nome, preço, desconto, tipo de moeda, imagem e descrição de cada produto
+Description:
+This JavaScript file contains configuration settings for the application, including product details, language preferences, theme settings, and additional features.
+ It stores product information like name, price, discount, description, and image. 
+It also defines the default theme (light mode or dark mode) and supports multiple languages.
+
+Purpose:
+This code provides a structure for displaying product information in an e-commerce website, allowing easy customization of product listings, theme, and language settings.
+*/
+
+export const config = {
+  // Configuration for features and appearance
+  featureFlags: {
+    formPage: true, // Enables or disables the form page feature
+  },
+
+  isLightMode: true, // Determines if the default theme is light mode (true for light mode)
+
+  language: "en", // Default language of the application (English)
+  languages: ["en", "es", "pt"], // Supported languages (English, Spanish, Portuguese)
+
+  // List of products with details such as id, name, price, discount, currency, image, and description
   products: [
     {
-      id: 1,
-      name: "Barber Line 6.5' Professional Cutting Scissors",
-      price: "19.99",
-      discount: 15,
-      currency: "€",
-      image: "assets/products/1.jpg",
-      description:
-        "440 Steel, Razor cut, Hand finish, High hardness 59.61 HRC, Adjustment screws, Individual case",
+      id: 1, // Unique identifier for the product
+      name: "Barber Line 6.5' Professional Cutting Scissors", // Product name
+      price: "19.99", // Price of the product
+      discount: 15, // Discount percentage
+      currency: "€", // Currency for the price (Euro)
+      image: "assets/products/1.jpg", // Path to the product image
+      description: // Description of the product
+        "440 Steel, Razor cut, Hand finish, High hardness 59.61 HRC, Adjustment screws, Individual case", // Product description
     },
     {
       id: 2,
