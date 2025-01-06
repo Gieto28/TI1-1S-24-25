@@ -19,7 +19,7 @@ export const addItemToCart = (item) => {
 
   storageHandler.setItem("cart", cart); // Atualiza o carrinho no
 
-  showToast("Item adicionado ao carrinho", item.name); // Exibe um toast informando que o item foi adicionado ao carrinho
+  showToast("Item added to cart", item.name); // Exibe um toast informando que o item foi adicionado ao carrinho
 
   updateEverythingBasedOnCart();
 };
