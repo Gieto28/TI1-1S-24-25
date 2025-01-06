@@ -3,30 +3,7 @@
     <div class="row">
         <!-- Left Side - Cart Items -->
         <div class="col-12 col-md-8">
-            <div class="card mb-4 shadow-sm border-light">
-                <div class="row g-0">
-                    <div class="col-md-4 d-flex justify-content-center align-items-center">
-                        <img src="https://via.placeholder.com/150" class="img-fluid rounded" alt="Backpack Clip">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold text-center">Backpack Clip</h5>
-                            <p class="text-muted small text-center">Estimated dispatch within 2 days</p>
-                            <div class="d-flex justify-content-center align-items-center mb-3">
-                                <button class="btn btn-outline-secondary btn-sm me-2">-</button>
-                                <input type="number" class="form-control w-25 text-center" value="1" min="1">
-                                <button class="btn btn-outline-secondary btn-sm ms-2">+</button>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <p class="fw-bold mb-0">23,99 €</p>
-                                <button class="btn btn-outline-danger btn-sm">
-                                    <i class="bi bi-trash"></i> Remove
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- Dynamic cart items will be inserted here by JavaScript -->
         </div>
 
         <!-- Right Side - Order Details -->
@@ -36,11 +13,11 @@
                     <h5 class="card-title text-dark fw-bold mb-3">Order Details</h5>
                     <div class="d-flex justify-content-between">
                         <p>Price:</p>
-                        <p>23,99 €</p>
+                        <p>0 €</p>
                     </div>
                     <div class="d-flex justify-content-between">
                         <p>Shipping:</p>
-                        <p>14 €</p>
+                        <p id="shippingValue">0 €</p>
                     </div>
                     <div class="d-flex justify-content-between">
                         <p>Tax:</p>
@@ -49,10 +26,10 @@
                     <hr>
                     <div class="d-flex justify-content-between">
                         <h6 class="fw-bold">Est. Total:</h6>
-                        <h6 class="fw-bold">37,99 €</h6>
+                        <h6 class="fw-bold">14 €</h6>
                     </div>
                     <div class="d-grid mt-4">
-                        <button class="btn btn-warning btn-lg text-dark">CHECK OUT</button>
+                        <button class="btn btn-warning btn-lg text-dark" id="checkoutButton">CHECK OUT</button>
                     </div>
                     <div class="mt-4">
                         <p class="text-muted small mb-1">
