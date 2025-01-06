@@ -112,15 +112,18 @@ export const updateOrderDetails = () => {
 
   const cartTotal = getCartTotal();
 
+  // Update the text content with calculated values
+  priceValueElement.textContent = `${cartTotal.toLocaleString("en", {
+    minimumFractionDigits: 2,
+  })} €`;
+
   shippingValue.innerHTML =
-    (+cartTotal ? 14 : 0).toLocaleString("en", {
+    (cartTotal ? 14 : 0).toLocaleString("en", {
       minimumFractionDigits: 2,
     }) + " €";
 
-  // Update the text content with calculated values
-  priceValueElement.textContent = `${cartTotal} €`;
   totalValueElement.textContent = `${(
-    +cartTotal + (+cartTotal ? 14 : 0)
+    cartTotal + (+cartTotal ? 14 : 0)
   ).toLocaleString("en", { minimumFractionDigits: 2 })} €`; // Assuming a fixed shipping cost of 14 €
 };
 

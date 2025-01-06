@@ -97,14 +97,12 @@ export const getCartTotal = () => {
 
   // Calcula o total do carrinho
 
-  return cart
-    .reduce((total, item) => {
-      const normalizedPrice = Number(item.price.replace(",", ".")); // Replace comma with period
-      const quantity = Number(item.quantity);
+  return cart.reduce((total, item) => {
+    const normalizedPrice = Number(item.price.replace(",", ".")); // Replace comma with period
+    const quantity = Number(item.quantity);
 
-      return total + normalizedPrice * quantity;
-    }, 0)
-    .toLocaleString("en", { minimumFractionDigits: 2 });
+    return total + normalizedPrice * quantity;
+  }, 0);
 };
 
 export const getCartAmmount = () => {
