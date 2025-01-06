@@ -5,9 +5,6 @@ Description:
 This JavaScript file contains configuration settings for the application, including product details, language preferences, theme settings, and additional features.
  It stores product information like name, price, discount, description, and image. 
 It also defines the default theme (light mode or dark mode) and supports multiple languages.
-
-Purpose:
-This code provides a structure for displaying product information in an e-commerce website, allowing easy customization of product listings, theme, and language settings.
 */
 
 export const config = {

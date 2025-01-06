@@ -5,10 +5,6 @@ Description:
 This JavaScript file is responsible for loading components (such as the header and footer), managing the current page, and initializing feature flags for the application. 
 It dynamically loads components using utility functions and controls which page to load based on stored data. 
 It also sets up global configurations and user preferences such as feature flags.
-
-Purpose:
-The purpose of this code is to handle the loading of common components (header, footer), dynamically manage page navigation based on stored data, and initialize the application’s feature flags for customizing behavior and appearance.
-It ensures the correct page is loaded when the application starts and enables default UI components.
 */
 
 // Importing utility functions for component loading, page management, storage handling, and header content
@@ -33,7 +29,7 @@ window.loadPage = (pageName) => {
   // Loads the footer component from the specified path
   await loadComponent("footer", "/app/components/footer/index.html");
 
-  // Retrieves the current page stored in localStorage or sessionStorage
+  // Retrieves the current page stored in localStorage
   const currentPage = storageHandler.getItem("currentPage");
 
   // Loads the home page if no page is stored, otherwise loads the stored page

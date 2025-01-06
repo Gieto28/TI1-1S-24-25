@@ -1,27 +1,33 @@
-// Objeto responsável por gerir o armazenamento local
+/* 
+This file: Local Storage Handler
+
+Description:
+This file contains a utility object to manage interactions with the localStorage. 
+It provides methods for setting, getting, removing, and clearing data in localStorage. 
+The data is stored as JSON strings.
+*/
+
+// Object responsible for managing localStorage operations
 export const storageHandler = {
 
-    // Adiciona ou atualiza um item no localStorage
+    // Adds or updates an item in localStorage
     setItem(key, value) {
-        // Criptografa o valor e armazena como uma string JSON
-        localStorage
-            .setItem(key, JSON.stringify(value));
+        // Encrypts the value and stores it as a JSON string
+        localStorage.setItem(key, JSON.stringify(value));
     },
 
-    // Obtém um item do localStorage
+    // Retrieves an item from localStorage
     getItem(key) {
-        // Descriptografa o valor recuperado e retorna como objeto ou valor original
-        return JSON.parse(localStorage
-            .getItem(key));
+        // Decrypts the retrieved value and returns it as an object or original value
+        return JSON.parse(localStorage.getItem(key));
     },
 
-    // Remove um item específico do localStorage
+    // Removes a specific item from localStorage
     removeItem(key) {
-        localStorage
-            .removeItem(key);
+        localStorage.removeItem(key);
     },
 
-    // Limpa todos os dados armazenados no localStorage
+    // Clears all data stored in localStorage
     clear() {
         localStorage.clear();
     }
