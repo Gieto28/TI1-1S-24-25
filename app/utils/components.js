@@ -1,4 +1,5 @@
 import { closeNavabrCollapse } from "../components/header/script.js";
+import { loadCheckoutContent } from "../pages/checkout/script.js";
 import { loadContactContent } from "../pages/contact/script.js";
 import { loadShopContent } from "../pages/shop/script.js";
 import { storageHandler } from "../utils/storage.js";
@@ -34,4 +35,5 @@ export const loadPage = async (pageName) => {
 const loadPageContent = {
   shop: () => loadShopContent(),
   contact: () => loadContactContent(),
+  checkout: () => loadCheckoutContent(),
 };

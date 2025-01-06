@@ -1,58 +1,34 @@
-<!-- Elemento de navegação que vai controlar se apresenta o seu conteúdo de forma colapsada ou expandida, com base na classe de bootstrap navbar-expand-lg -->
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
-
-  <!-- Container principal que contém o conteúdo da barra de navegação -->
   <div class="container">
-
-    <!-- Botão para redirecionar para a página inicial com o logo e nome da barbearia, posicionado à esquerda do header -->
     <button class="nav-link d-flex align-items-center fs-5" href="#" onclick="loadPage('home')">
       <img src="/TI1-1S-24-25/app/assets/logos/banner-light-mode.png" alt="Logo" class="img-fluid" width="70">
       <span class="ms-2 fw-bold">ChopChop Barbers</span>
     </button>
-
-    <!-- Botão de menu para navegação em dispositivos móveis, com visualização toggle -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
-    <!-- Div que contém a lista dos botões da navegação principal que pode ser expandida ou recolhida, consoante a largura do ecrã do dispositivo -->
     <div class="collapse navbar-collapse" id="navbarNav">
-      <!-- Lista dos itens com os links de navegação -->
       <ul class="navbar-nav ms-auto d-flex justify-content-center w-100">
-        <!-- Link para a página inicial -->
         <li class="nav-item">
           <button class="nav-link fs-5" href="#" onclick="loadPage('home')">Home</button>
         </li>
-        <!-- Link para a página de agendamentos -->
-        <li class="nav-item">
-          <button class="nav-link fs-5" href="#" onclick="loadPage('form')">Appointments</button>
-        </li>
-        <!-- Link para a loja -->
         <li class="nav-item">
           <button class="nav-link fs-5" href="#" onclick="loadPage('shop')">Shop</button>
-        </li> 
-        <!-- Link para a página de serviços -->
-        <li class="nav-item">
-          <button class="nav-link fs-5" href="#" onclick="loadPage('home')">Services</button>
         </li>
-        <!-- Link para a página de informações adicionais -->
         <li class="nav-item">
-          <button class="nav-link fs-5" href="#" onclick="loadPage('form')">About Us</button>
+          <button class="nav-link fs-5" href="#" onclick="loadPage('about')">About Us</button>
         </li>
-        <!-- Link para a página de contactos -->
         <li class="nav-item">
           <button class="nav-link fs-5" href="#" onclick="loadPage('contact')">Contact Us</button>
         </li>
       </ul>
-
-      <!-- Ícone e contador do carrinho de compras -->
-      <div id="cartAmmount" class="d-flex align-items-center position-relative">
-        <i class="bi bi-cart-fill fs-4"></i>
+      <li id="cartAmmount" class="d-flex align-items-center position-relative" onclick="loadPage('checkout')">
+        <button class="nav-link bi bi-cart-fill fs-4"></button>
         <span id="cartCount" class="position-relative mb-2 top-0 right-0 translate-middle badge rounded-pill bg-danger">
           0
         </span>
-      </div>
+      </li>
     </div>
   </div>
 </nav>

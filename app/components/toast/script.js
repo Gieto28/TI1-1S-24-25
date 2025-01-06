@@ -6,7 +6,7 @@ const createToastHTML = (id, title, message, imageUrl) => {
     return `
         <div id="${id}" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
-                ${imageUrl ? `<img src="${imageUrl}" class="rounded me-2" alt="..." />` : ''}
+                ${imageUrl ? `<img src="${imageUrl}" class="rounded me-2" alt="${imageUrl}" />` : ''}
                 <strong class="me-auto">${title}</strong>
                 <small class="toast-time">now</small>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>

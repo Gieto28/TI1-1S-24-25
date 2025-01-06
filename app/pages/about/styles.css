@@ -1,0 +1,4 @@
+figcaption::before {
+    content: none;
+    display: none;
+}

@@ -1,5 +1,6 @@
 import { updateCart } from "../components/header/script.js";
 import { showToast } from "../components/toast/script.js";
+import { updateOrderDetails } from "../pages/checkout/script.js";
 import { storageHandler } from "./storage.js";
 
 export const addItemToCart = (item) => {
@@ -20,40 +21,65 @@ export const addItemToCart = (item) => {
 
   showToast("Item adicionado ao carrinho", item.name); // Exibe um toast informando que o item foi adicionado ao carrinho
 
-  updateCart(); // Atualiza o número de itens no carrinho
+  updateEverythingBasedOnCart();
 };
 
 export const removeItemFromCart = (id) => {
   const cart = storageHandler.getItem("cart") || [];
-  // Encontra o índice do item no carrinho
-  const index = cart.findIndex((i) => i.id === id);
 
-  // Remove o item do carrinho
-  cart.splice(index, 1);
+  console.log(typeof id);
+
+  // Encontra o índice do item no carrinho
+  const filteredCart = cart.filter((i) => i.id !== +id);
+
+  console.log("Removing item from cart 2");
+
+  console.log(filteredCart);
+
+  storageHandler.setItem("cart", filteredCart); // Atualiza o carrinho no localStorage
+
+  updateEverythingBasedOnCart();
 };
 
 export const decrementItemQuantity = (id) => {
   const cart = storageHandler.getItem("cart") || [];
+
   // Encontra o item no carrinho
-  const item = cart.find((i) => i.id === id);
+  const item = cart.find((i) => i.id === +id);
+
+  console.log(item);
 
   // Decrementa a quantidade do item
   item.quantity--;
 
+  storageHandler.setItem("cart", cart); // Atualiza o carrinho no localStorage
+
   // Se a quantidade for zero, remove o item do carrinho
-  if (item.quantity === 0) {
+
+  console.log(item.quantity);
+  console.log(typeof item.quantity);
+
+  if (+item.quantity === 0) {
+    console.log("Removing item from cart");
     removeItemFromCart(id);
+    return;
   }
+
+  updateEverythingBasedOnCart();
 };
 
 export const incrementItemQuantity = (id) => {
   const cart = storageHandler.getItem("cart") || [];
 
   // Encontra o item no carrinho
-  const item = cart.find((i) => i.id === id);
+  const item = cart.find((i) => +i.id === +id);
 
   // Incrementa a quantidade do item
   item.quantity++;
+
+  storageHandler.setItem("cart", cart); // Atualiza o carrinho no localStorage
+
+  updateEverythingBasedOnCart();
 };
 
 export const getDiscountedPrice = (price, discount) => {
@@ -70,9 +96,15 @@ export const getCartTotal = () => {
   const cart = storageHandler.getItem("cart") || [];
 
   // Calcula o total do carrinho
+
   return cart
-    .reduce((total, item) => total + +item.price * item.quantity, 0)
-    .toFixed(2);
+    .reduce((total, item) => {
+      const normalizedPrice = Number(item.price.replace(",", ".")); // Replace comma with period
+      const quantity = Number(item.quantity);
+
+      return total + normalizedPrice * quantity;
+    }, 0)
+    .toLocaleString("en", { minimumFractionDigits: 2 });
 };
 
 export const getCartAmmount = () => {
@@ -80,4 +112,16 @@ export const getCartAmmount = () => {
 
   // Calcula a quantidade de itens no carrinho
   return cart.reduce((acc, item) => acc + item.quantity, 0);
+};
+
+export const removeAllItemsFromCart = () => {
+  storageHandler.removeItem("cart"); // Remove o carrinho do localStorage
+
+  updateEverythingBasedOnCart();
+};
+
+const updateEverythingBasedOnCart = () => {
+  updateCart();
+
+  updateOrderDetails();
 };
