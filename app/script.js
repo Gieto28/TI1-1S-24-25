@@ -1,5 +1,5 @@
 /* 
-This File: Dynamic Page Loader with Header, Footer, and Feature Flags Initialization
+This file: Dynamic Page Loader with Header, Footer, and Feature Flags Initialization
 
 Description:
 This JavaScript file is responsible for loading components (such as the header and footer), managing the current page, and initializing feature flags for the application. 

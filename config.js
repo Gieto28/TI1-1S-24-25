@@ -1,5 +1,5 @@
 /* 
-This File: E-commerce Product Configuration and Appearance Settings
+This file: E-commerce Product Configuration and Appearance Settings
 
 Description:
 This JavaScript file contains configuration settings for the application, including product details, language preferences, theme settings, and additional features.
