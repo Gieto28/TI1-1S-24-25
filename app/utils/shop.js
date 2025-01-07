@@ -1,129 +1,129 @@
 /*
-This file: Cart management functionalities.
+Este ficheiro: Funcionalidades de gestão do carrinho.
 
-Description:
-This JavaScript file handles cart management functionalities.
-It allows for adding, removing, and updating items in the cart, as well as calculating totals and applying discounts. 
-The cart data is stored in localStorage, and updates are reflected through dynamic content rendering. Toast notifications and order details are updated accordingly.
+Descrição:
+Este ficheiro JavaScript lida com funcionalidades de gestão do carrinho.
+Permite adicionar, remover e atualizar itens no carrinho, bem como calcular totais e aplicar descontos. 
+Os dados do carrinho são armazenados no localStorage, e as atualizações são refletidas através de renderização dinâmica de conteúdo. As notificações toast e os detalhes da encomenda são atualizados em conformidade.
 */
 
-// Importing utility functions and components for cart management, notifications, and storage handling
+// Importa funções utilitárias e componentes para gestão do carrinho, notificações e manipulação de armazenamento
 import { updateCart } from "../components/header/script.js";
 import { showToast } from "../components/toast/script.js";
 import { updateOrderDetails } from "../pages/checkout/script.js";
 import { storageHandler } from "./storage.js";
 
-// Adds an item to the cart, either incrementing its quantity if it's already in the cart, or adding it if not
+// Adiciona um item ao carrinho, incrementando a sua quantidade se já existir ou adicionando-o se não existir
 export const addItemToCart = (item) => {
   const cart = storageHandler.getItem("cart") || [];
 
-  // Checks if the item already exists in the cart
+  // Verifica se o item já existe no carrinho
   const itemInCart = cart.find((i) => i.id === item.id);
 
-  // If the item exists, increment its quantity
+  // Se o item já existir, incrementa a sua quantidade
   if (itemInCart) {
     itemInCart.quantity++;
   } else {
-    // If the item doesn't exist, add it with a quantity of 1
+    // Se o item não existir, adiciona-o com uma quantidade de 1
     cart.push({ ...item, quantity: 1 });
   }
 
-  storageHandler.setItem("cart", cart); // Updates the cart in localStorage
+  storageHandler.setItem("cart", cart); // Atualiza o carrinho no localStorage
 
-  showToast("Item added to cart", item.name); // Displays a toast message
+  showToast("Item added to cart", item.name); // Mostra uma notificação toast
 
-  updateEverythingBasedOnCart(); // Updates cart UI and order details
+  updateEverythingBasedOnCart(); // Atualiza a interface do carrinho e os detalhes da encomenda
 };
 
-// Removes an item from the cart based on its ID
+// Remove um item do carrinho com base no seu ID
 export const removeItemFromCart = (id) => {
   const cart = storageHandler.getItem("cart") || [];
 
-  // Filters out the item to be removed from the cart
+  // Filtra o item a ser removido do carrinho
   const filteredCart = cart.filter((i) => i.id !== +id);
 
-  storageHandler.setItem("cart", filteredCart); // Updates the cart in localStorage
+  storageHandler.setItem("cart", filteredCart); // Atualiza o carrinho no localStorage
 
-  updateEverythingBasedOnCart(); // Updates cart UI and order details
+  updateEverythingBasedOnCart(); // Atualiza a interface do carrinho e os detalhes da encomenda
 };
 
-// Decrements the quantity of an item in the cart, removing it if the quantity reaches zero
+// Decrementa a quantidade de um item no carrinho, removendo-o se a quantidade chegar a zero
 export const decrementItemQuantity = (id) => {
   const cart = storageHandler.getItem("cart") || [];
 
-  // Finds the item in the cart
+  // Encontra o item no carrinho
   const item = cart.find((i) => i.id === +id);
 
-  // Decrements the quantity of the item
+  // Decrementa a quantidade do item
   item.quantity--;
 
-  storageHandler.setItem("cart", cart); // Updates the cart in localStorage
+  storageHandler.setItem("cart", cart); // Atualiza o carrinho no localStorage
 
-  // If the quantity becomes zero, removes the item from the cart
+  // Se a quantidade chegar a zero, remove o item do carrinho
   if (+item.quantity === 0) {
     removeItemFromCart(id);
     return;
   }
 
-  updateEverythingBasedOnCart(); // Updates cart UI and order details
+  updateEverythingBasedOnCart(); // Atualiza a interface do carrinho e os detalhes da encomenda
 };
 
-// Increments the quantity of an item in the cart
+// Incrementa a quantidade de um item no carrinho
 export const incrementItemQuantity = (id) => {
   const cart = storageHandler.getItem("cart") || [];
 
-  // Finds the item in the cart
+  // Encontra o item no carrinho
   const item = cart.find((i) => +i.id === +id);
 
-  // Increments the quantity of the item
+  // Incrementa a quantidade do item
   item.quantity++;
 
-  storageHandler.setItem("cart", cart); // Updates the cart in localStorage
+  storageHandler.setItem("cart", cart); // Atualiza o carrinho no localStorage
 
-  updateEverythingBasedOnCart(); // Updates cart UI and order details
+  updateEverythingBasedOnCart(); // Atualiza a interface do carrinho e os detalhes da encomenda
 };
 
-// Calculates the discounted price of an item
+// Calcula o preço com desconto de um item
 export const getDiscountedPrice = (price, discount) => {
-  // If no discount is applied, return the original price
+  // Se nenhum desconto for aplicado, retorna o preço original
   if (!discount) {
     return price;
   }
 
-  // Calculates the price after applying the discount
+  // Calcula o preço após aplicar o desconto
   return +price - ((+price * discount) / 100).toFixed(2);
 };
 
-// Calculates the total price of all items in the cart
+// Calcula o preço total de todos os itens no carrinho
 export const getCartTotal = () => {
   const cart = storageHandler.getItem("cart") || [];
 
-  // Reduces the cart items to a total amount by considering the quantity and price of each item
+  // Reduz os itens do carrinho a um montante total considerando a quantidade e o preço de cada item
   return cart.reduce((total, item) => {
-    const normalizedPrice = Number(item.price.replace(",", ".")); // Converts price string to number
+    const normalizedPrice = Number(item.price.replace(",", ".")); // Converte o preço de string para número
     const quantity = Number(item.quantity);
 
     return total + normalizedPrice * quantity;
   }, 0);
 };
 
-// Calculates the total quantity of items in the cart
+// Calcula a quantidade total de itens no carrinho
 export const getCartAmmount = () => {
   const cart = storageHandler.getItem("cart") || [];
 
-  // Sums the quantities of all items in the cart
+  // Soma as quantidades de todos os itens no carrinho
   return cart.reduce((acc, item) => acc + item.quantity, 0);
 };
 
-// Removes all items from the cart
+// Remove todos os itens do carrinho
 export const removeAllItemsFromCart = () => {
-  storageHandler.removeItem("cart"); // Removes the cart data from localStorage
+  storageHandler.removeItem("cart"); // Remove os dados do carrinho do localStorage
 
-  updateEverythingBasedOnCart(); // Updates cart UI and order details
+  updateEverythingBasedOnCart(); // Atualiza a interface do carrinho e os detalhes da encomenda
 };
 
-// Helper function to update the cart UI and order details based on the current cart state
+// Função auxiliar para atualizar a interface do carrinho e os detalhes da encomenda com base no estado atual do carrinho
 const updateEverythingBasedOnCart = () => {
-  updateCart(); // Updates the cart UI
-  updateOrderDetails(); // Updates the order details
+  updateCart(); // Atualiza a interface do carrinho
+  updateOrderDetails(); // Atualiza os detalhes da encomenda
 };

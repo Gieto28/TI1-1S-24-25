@@ -1,6 +1,16 @@
+/*
+Este ficheiro: Inicialização de Configurações e Preferências da Aplicação
 
+Descrição:
+Este ficheiro JavaScript lida com a inicialização e gestão de configurações da aplicação. 
+Inclui funcionalidades para inicializar as feature flags com base nas configurações armazenadas, alternar entre os modos claro e escuro, e alterar o idioma da aplicação. 
+As alterações são sincronizadas com o armazenamento local para garantir persistência.
+*/
+
+// Importa o objeto de configuração principal da aplicação (config) e o gestor de armazenamento local (storageHandler)
 import { config } from "../../config.js";
 import { storageHandler } from "./storage.js";
+
 
 // Inicializa as feature flags ao iterar pelo objeto config.featureFlags e armazena cada key e value no storage handler
 export const intializeFeatureFlags = async () => {

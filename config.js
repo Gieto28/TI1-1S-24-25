@@ -1,34 +1,34 @@
 /* 
-This file: E-commerce Product Configuration and Appearance Settings
+Este ficheiro: Configuração de Produtos de E-commerce e Definições de Aparência
 
-Description:
-This JavaScript file contains configuration settings for the application, including product details, language preferences, theme settings, and additional features.
- It stores product information like name, price, discount, description, and image. 
-It also defines the default theme (light mode or dark mode) and supports multiple languages.
+Descrição:
+Este ficheiro JavaScript contém definições de configuração para a aplicação, incluindo detalhes de produtos, preferências de idioma, definições de tema e funcionalidades adicionais.
+Armazena informações sobre produtos, como nome, preço, desconto, descrição e imagem. 
+Também define o tema padrão (modo claro ou modo escuro) e suporta múltiplos idiomas.
 */
 
 export const config = {
-  // Configuration for features and appearance
+  // Configuração de funcionalidades e aparência
   featureFlags: {
-    formPage: true, // Enables or disables the form page feature
+    formPage: true, // Ativa ou desativa a funcionalidade da página de formulário
   },
 
-  isLightMode: true, // Determines if the default theme is light mode (true for light mode)
+  isLightMode: true, // Determina se o tema padrão é o modo claro (true para modo claro)
 
-  language: "en", // Default language of the application (English)
-  languages: ["en", "es", "pt"], // Supported languages (English, Spanish, Portuguese)
+  language: "en", // Idioma padrão da aplicação (Inglês)
+  languages: ["en", "es", "pt"], // Idiomas suportados (Inglês, Espanhol, Português)
 
-  // List of products with details such as id, name, price, discount, currency, image, and description
+  // Lista de produtos com detalhes como id, nome, preço, desconto, moeda, imagem e descrição
   products: [
     {
-      id: 1, // Unique identifier for the product
-      name: "Barber Line 6.5' Professional Cutting Scissors", // Product name
-      price: "19.99", // Price of the product
-      discount: 15, // Discount percentage
-      currency: "€", // Currency for the price (Euro)
-      image: "assets/products/1.jpg", // Path to the product image
-      description: // Description of the product
-        "440 Steel, Razor cut, Hand finish, High hardness 59.61 HRC, Adjustment screws, Individual case", // Product description
+      id: 1, // Identificador único do produto
+      name: "Barber Line 6.5' Professional Cutting Scissors", // Nome do produto
+      price: "19.99", // Preço do produto
+      discount: 15, // Percentagem de desconto
+      currency: "€", // Moeda do preço (Euro)
+      image: "assets/products/1.jpg", // Caminho para a imagem do produto
+      description: // Descrição do produto
+        "440 Steel, Razor cut, Hand finish, High hardness 59.61 HRC, Adjustment screws, Individual case", // Descrição do produto
     },
     {
       id: 2,

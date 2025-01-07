@@ -1,28 +1,63 @@
+<!-- 
+Este ficheiro: Header - Barra de navegação do website
+
+Descrição:
+Este código define a navegação principal do site para a ChopChop Barbers. Este inclui botões de navegação para diferentes 
+páginas da loja online, como "Home", "Shop", "About Us", e "Contact Us". Também inclui um ícone de carrinho de compras 
+que exibe a quantidade de itens no carrinho, com interação dinâmica através de JavaScript.
+
+Estrutura:
+1. Logo e Nome da Empresa:
+   - Um botão que contém o logo da ChopChop Barbers e o nome da empresa, que redireciona para a página inicial ("Home").
+   
+2. Menu de Navegação:
+   - Um menu com links para as páginas principais: "Home", "Shop", "About Us" e "Contact Us". 
+   - Cada item de menu possui um evento `onclick` que carrega a respetiva página usando a função `loadPage`.
+
+3. Carrinho de Compras:
+   - Um ícone de carrinho de compras que, ao ser clicado, leva à página de checkout. O número de itens no carrinho é 
+     exibido com uma badge que se atualiza dinamicamente (com valor inicial de 0).
+-->
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container">
+    <!-- Logo e nome da empresa, redireciona para a página home -->
     <button class="nav-link d-flex align-items-center fs-5" href="#" onclick="loadPage('home')">
       <img src="/app/assets/logos/banner-light-mode.png" alt="ChopChop Banner" class="img-fluid" width="70">
       <span class="ms-2 fw-bold">ChopChop Barbers</span>
     </button>
+    
+    <!-- Toggler para ecrãs menores -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    
+    <!-- Menu de navegação -->
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto d-flex justify-content-center w-100">
+        <!-- Link para a página da home -->
         <li class="nav-item">
           <button class="nav-link fs-5" href="#" onclick="loadPage('home')">Home</button>
         </li>
+        
+        <!-- Link para a página da loja -->
         <li class="nav-item">
           <button class="nav-link fs-5" href="#" onclick="loadPage('shop')">Shop</button>
         </li>
+        
+        <!-- Link para a página de sobre nós -->
         <li class="nav-item">
           <button class="nav-link fs-5" href="#" onclick="loadPage('about')">About Us</button>
         </li>
+        
+        <!-- Link para a página de contactos -->
         <li class="nav-item">
           <button class="nav-link fs-5" href="#" onclick="loadPage('contact')">Contact Us</button>
         </li>
       </ul>
+      
+      <!-- Carrinho de compras -->
       <li id="cartAmmount" class="d-flex align-items-center position-relative" onclick="loadPage('checkout')">
         <button class="nav-link bi bi-cart-fill fs-4"></button>
         <span id="cartCount" class="position-relative mb-2 top-0 right-0 translate-middle badge rounded-pill bg-danger">

@@ -1,44 +1,44 @@
 /* 
-This file: Dynamic Page Loader with Header, Footer, and Feature Flags Initialization
+Este ficheiro: Carregador de Páginas Dinâmico com Header, Footer e Inicialização de Sinalizadores de Funcionalidades
 
-Description:
-This JavaScript file is responsible for loading components (such as the header and footer), managing the current page, and initializing feature flags for the application. 
-It dynamically loads components using utility functions and controls which page to load based on stored data. 
-It also sets up global configurations and user preferences such as feature flags.
+Descrição:
+Este ficheiro JavaScript é responsável por carregar componentes (como o header e o footer), gerir a página atual e inicializar os sinalizadores de funcionalidades da aplicação. 
+Carrega dinamicamente componentes utilizando funções utilitárias e controla qual página carregar com base nos dados armazenados. 
+Também configura definições globais e preferências do utilizador, como os sinalizadores de funcionalidades.
 */
 
-// Importing utility functions for component loading, page management, storage handling, and header content
+// Importação de funções utilitárias para o carregamento de componentes, gestão de páginas, manipulação de armazenamento e conteúdo do header
 import { loadComponent, loadPage } from "../app/utils/components.js";
 import { intializeFeatureFlags } from "../app/utils/config.js";
 import { storageHandler } from "../app/utils/storage.js";
 import { loadHeaderContent } from "./components/header/script.js";
 
-// Global function to load a page dynamically
+// Função global para carregar dinamicamente uma página
 window.loadPage = (pageName) => {
-  loadPage(pageName); // Calls the function to load a specific page based on the page name
+  loadPage(pageName); // Chama a função para carregar uma página específica com base no nome da página
 };
 
-// Immediately Invoked Function Expression (IIFE) to load default components (header and footer) and page
+// Expressão de Função Invocada Imediatamente (IIFE) para carregar componentes padrão (header e footer) e a página
 (async () => {
-  // Loads the header component from the specified path
+  // Carrega o componente do header a partir do caminho especificado
   await loadComponent("header", "/app/components/header/index.html");
 
-  // Loads header-specific content (can include dynamic information like navigation items)
+  // Carrega conteúdo específico do header (pode incluir informações dinâmicas como itens de navegação)
   loadHeaderContent();
 
-  // Loads the footer component from the specified path
+  // Carrega o componente do footer a partir do caminho especificado
   await loadComponent("footer", "/app/components/footer/index.html");
 
-  // Retrieves the current page stored in localStorage
+  // Recupera a página atual armazenada no localStorage
   const currentPage = storageHandler.getItem("currentPage");
 
-  // Loads the home page if no page is stored, otherwise loads the stored page
+  // Carrega a página inicial se nenhuma página estiver armazenada, caso contrário, carrega a página armazenada
   if (!currentPage) {
-    loadPage("home"); // Default page is "home"
+    loadPage("home"); // A página padrão é "home"
   } else {
-    loadPage(currentPage); // Loads the page stored in "currentPage"
+    loadPage(currentPage); // Carrega a página armazenada em "currentPage"
   }
 
-  // Initializes the feature flags based on stored or default settings
+  // Inicializa os sinalizadores de funcionalidades com base nas definições armazenadas ou padrões
   intializeFeatureFlags();
 })();

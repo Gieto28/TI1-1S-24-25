@@ -1,13 +1,40 @@
+<!-- 
+Este ficheiro: Footer
+
+Descrição:
+Este código define o footer da página para a ChopChop Barbers. Este inclui informações sobre a empresa, um link para a política de privacidade, 
+e ícones de redes sociais ou outros links úteis (como Figma, GitHub, Canva, e o website). Além disso, exibe os direitos autorais da empresa.
+
+Estrutura:
+1. Logo e Nome da Empresa:
+   - Um link que redireciona para o topo da página atual e exibe o logo da ChopChop Barbers.
+   
+2. Direitos Autorais e Política de Privacidade:
+   - Um texto que exibe os direitos autorais da empresa e um link para a Política de Privacidade.
+   
+3. Links para Plataformas Externas:
+   - Uma lista de ícones de redes sociais e outras plataformas úteis:
+     - Figma: Para visualização e edição do design do projeto.
+     - GitHub: Repositório do código do projeto.
+     - Canvas: Design gráfico utilizado para o projeto.
+     - Website: Link para o site oficial da ChopChop Barbers.
+-->
+
 <footer class="bg-light text-dark py-5">
     <div class="container">
         <div class="text-center">
+            <!-- Logo da empresa, redireciona para o topo da página atual -->
             <a href="#" class="d-block mb-3 text-dark fw-bold text-decoration-none">
                 <img src="/app/assets/logos/banner-light-mode.png" alt="ChopChop Logo" class="img-fluid" width="80">
             </a>
+            
+            <!-- Direitos autorais e link para a Política de Privacidade -->
             <p class="small text-muted d-inline">© 2024 ChopChop Barbers. All Rights Reserved.</p>
             <button onclick="loadPage('privacy')" class="btn btn-link p-0 d-inline align-baseline">
                 Privacy Policy
             </button>
+            
+            <!-- Links para plataformas externas -->
             <ul class="list-inline mt-3">
                 <!-- Figma -->
                 <li class="list-inline-item">
@@ -15,18 +42,21 @@
                         <i class="bi bi-palette-fill"></i>
                     </a>
                 </li>
+                
                 <!-- GitHub -->
                 <li class="list-inline-item">
                     <a target="_blank" href="https://github.com/Gieto28/TI1-1S-24-25" class="text-dark text-decoration-none" title="GitHub">
                         <i class="bi bi-github"></i>
                     </a>
                 </li>
-                <!-- Canvas -->
+                
+                <!-- Canva -->
                 <li class="list-inline-item">
-                    <a target="_blank" href="https://www.canva.com/design/DAGYoE9i2pw/oNgbH23DMkGzBxKv_xYIuA/edit" class="text-dark text-decoration-none" title="Canvas">
+                    <a target="_blank" href="https://www.canva.com/design/DAGYoE9i2pw/oNgbH23DMkGzBxKv_xYIuA/edit" class="text-dark text-decoration-none" title="Canva">
                         <i class="bi bi-kanban-fill"></i>
                     </a>
                 </li>
+                
                 <!-- Website -->
                 <li class="list-inline-item">
                     <a target="_blank" href="https://gieto28.github.io/TI1-1S-24-25/app/index.html" class="text-dark text-decoration-none" title="Website">

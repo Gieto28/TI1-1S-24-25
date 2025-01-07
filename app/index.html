@@ -1,10 +1,10 @@
 <!-- 
-This File: ChopChop Barbers Website
+Este Ficheiro: Website ChopChop Barbers
 
-Description:
-This HTML includes placeholders for the header, main content, and footer sections, which are dynamically loaded via JavaScript. 
-The page uses Bootstrap for responsive design and includes custom styles. 
-It also contains a toast notification container for alerts and messages.
+Descrição:
+Este HTML inclui espaços reservados para as secções de header, conteúdo principal e footer, que são carregados dinamicamente via JavaScript. 
+A página utiliza Bootstrap para design responsivo e inclui estilos personalizados. 
+Também contém um contentor de notificações do tipo "toast" para alertas e mensagens.
 -->
 
 <!DOCTYPE html>
@@ -14,37 +14,37 @@ It also contains a toast notification container for alerts and messages.
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Defines the title of the page, displayed in the browser tab -->
+    <!-- Define o título da página, exibido no separador do navegador -->
     <title>ChopChop Barbers</title>
 
-    <!-- Sets the favicon for the page, displayed in the browser tab -->
+    <!-- Define o ícone da página (favicon), exibido no separador do navegador -->
     <link rel="icon" href="../app//assets/icons/icon-dark-mode.png">
 
-    <!-- Imports Bootstrap CSS framework for responsive layout and consistent styles -->
+    <!-- Importa o framework CSS Bootstrap para um layout responsivo e estilos consistentes -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- Imports custom styles specific to the page -->
+    <!-- Importa estilos personalizados específicos da página -->
     <link href="../app/pages/about/styles.css" rel="stylesheet">
 </head>
 
 <body>
-    <!-- Header section where the website’s header content will be dynamically loaded -->
+    <!-- Secção do header onde o seu conteúdo do website será carregado dinamicamente -->
     <header id="header"></header>
 
-    <!-- Main content section where page-specific content will be displayed -->
+    <!-- Secção de conteúdo principal onde o conteúdo específico da página será exibido -->
     <main id="body" class="py-4 container"></main>
 
-    <!-- Footer section where the website’s footer content will be dynamically loaded -->
+    <!-- Secção do footer onde o seu conteúdo do website será carregado dinamicamente -->
     <footer id="footer"></footer>
 
-    <!-- Container for displaying toast notifications -->
+    <!-- Contentor para exibir notificações do tipo "toast" -->
     <div id="toastContainer" class="toast-container position-fixed"></div>
 </body>
 
-<!-- Initial script for handling dynamic content and page behavior -->
+<!-- Script inicial para gerir o conteúdo dinâmico e o comportamento da página -->
 <script src="./script.js" type="module"></script>
-<!-- Import Bootstrap JS for handling Bootstrap's interactive components -->
+<!-- Importa o JS do Bootstrap para gerir os componentes interativos do Bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </html>

@@ -1,6 +1,21 @@
-import { config } from "../../../config.js";
-import { createCarousel } from "../../components/carousel/script.js";
-import { addItemToCart } from "../../utils/shop.js";
+/*
+Este ficheiro: Carregamento de Conteúdo da Loja e Renderização Dinâmica
+
+Descrição:
+Este ficheiro JavaScript é responsável por gerir o carregamento de conteúdo dinâmico para a página da loja. 
+Inclui funções para renderizar o carrossel de imagens da loja, criar e renderizar cartões de produtos, 
+e adicionar interatividade para adicionar produtos ao carrinho. Os dados dos produtos são configurados com base nas definições globais.
+*/
+
+// Importa a configuração global da aplicação
+import { config } from "../../../config.js"; 
+
+// Importa a função para criar carrosséis de imagens
+import { createCarousel } from "../../components/carousel/script.js"; 
+
+// Importa a função para adicionar produtos ao carrinho
+import { addItemToCart } from "../../utils/shop.js"; 
+
 
 export const loadShopContent = () => {
   renderCarousel(); // Renderiza o carrossel da loja
