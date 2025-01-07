@@ -156,11 +156,18 @@ Função: checkout
 
 Descrição:
 A função `checkout` é chamada quando o utilizador clica no botão de checkout. 
-Esta exibe uma mensagem de sucesso e limpa o carrinho de compras após a finalização do checkout.
+Esta exibe uma mensagem de sucesso ou erro e limpa o carrinho de compras após a finalização do checkout.
 */
 function checkout() {
+  const cart = storageHandler.getItem("cart") || [];
+
+  if (cart.length === 0) {
+    showToast("Checkout failed!", "Your cart is empty.");
+    return;
+  }
+
   showToast("Checkout success!", "You'll soon receive a confirmation email.");
-  
+
   // Remove todos os itens do carrinho
   removeAllItemsFromCart();
 
