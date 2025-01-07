@@ -150,6 +150,14 @@ document.addEventListener("click", (e) => {
 });
 
 function checkout() {
+  //obtem o carrinho do localStorage
+  const cart = storageHandler.getItem("cart") || [];
+
+  if (cart.length === 0) {
+    showToast("Checkout failed!", "Your cart is empty.");
+    return;
+  }
+
   showToast("Checkout success!", "You'll soon receive a confirmation email.");
 
   removeAllItemsFromCart();
