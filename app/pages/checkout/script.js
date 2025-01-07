@@ -162,11 +162,15 @@ function checkout() {
   const cart = storageHandler.getItem("cart") || [];
 
   if (cart.length === 0) {
-    showToast("Checkout failed!", "Your cart is empty.");
+    showToast("Checkout failed!", "Your cart is empty.", "failure");
     return;
   }
 
-  showToast("Checkout success!", "You'll soon receive a confirmation email.");
+  showToast(
+    "Checkout success!",
+    "You'll soon receive a confirmation email.",
+    "success"
+  );
 
   // Remove todos os itens do carrinho
   removeAllItemsFromCart();

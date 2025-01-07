@@ -8,14 +8,14 @@ com base nos resultados da validação. A função `showToast` é utilizada para
 */
 
 // Importa a função para exibir mensagens de notificação (toast)
-import { showToast } from "../../components/toast/script.js"; 
+import { showToast } from "../../components/toast/script.js";
 
 export const loadContactContent = () => {
-    const form = document.getElementById('contactForm');
+  const form = document.getElementById("contactForm");
 
-    // Adiciona o event listener ao formulário para validar os dados quando o formulário for enviado
-    form.addEventListener('submit', validateForm);
-}
+  // Adiciona o event listener ao formulário para validar os dados quando o formulário for enviado
+  form.addEventListener("submit", validateForm);
+};
 
 /*
 Função: validateForm
@@ -28,42 +28,46 @@ A função `validateForm` é chamada ao submeter o formulário. Esta impede o en
 - Caso todos os campos sejam válidos, exibe uma mensagem de sucesso, caso contrário, exibe uma mensagem de erro.
 */
 export const validateForm = (event) => {
-    event.preventDefault(); // Impede o envio padrão do formulário
+  event.preventDefault(); // Impede o envio padrão do formulário
 
-    let isValid = true; // Flag para verificar se o formulário é válido
+  let isValid = true; // Flag para verificar se o formulário é válido
 
-    // Limpa os erros anteriores, se houver
-    document.getElementById('fullnameError').textContent = '';
-    document.getElementById('emailError').textContent = '';
-    document.getElementById('messageError').textContent = '';
+  // Limpa os erros anteriores, se houver
+  document.getElementById("fullnameError").textContent = "";
+  document.getElementById("emailError").textContent = "";
+  document.getElementById("messageError").textContent = "";
 
-    // Valida o campo "fullname"
-    const fullname = document.getElementById('fullname').value;
-    if (!fullname) {
-        isValid = false; // Marca como inválido se o nome não for preenchido
-    }
+  // Valida o campo "fullname"
+  const fullname = document.getElementById("fullname").value;
+  if (!fullname) {
+    isValid = false; // Marca como inválido se o nome não for preenchido
+  }
 
-    // Valida o campo "email" com expressão regular para garantir formato correto
-    const email = document.getElementById('email').value;
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!email || !emailPattern.test(email)) {
-        isValid = false; // Marca como inválido se o e-mail não for preenchido ou estiver no formato errado
-    }
+  // Valida o campo "email" com expressão regular para garantir formato correto
+  const email = document.getElementById("email").value;
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if (!email || !emailPattern.test(email)) {
+    isValid = false; // Marca como inválido se o e-mail não for preenchido ou estiver no formato errado
+  }
 
-    // Valida o campo "message", garantindo que tenha pelo menos 15 caracteres
-    const message = document.getElementById('message').value;
-    if (!message || message.length < 15) {
-        isValid = false; // Marca como inválido se a mensagem for muito curta ou não for preenchida
-    }
+  // Valida o campo "message", garantindo que tenha pelo menos 15 caracteres
+  const message = document.getElementById("message").value;
+  if (!message || message.length < 15) {
+    isValid = false; // Marca como inválido se a mensagem for muito curta ou não for preenchida
+  }
 
-    // Se o formulário for válido, exibe uma mensagem de sucesso e limpa o formulário
-    if (isValid) {
-        showToast('Success', 'Your message has been sent successfully.');
-        cleanForm(); // Limpa os campos do formulário após sucesso
-    } else {
-        // Caso contrário, exibe uma mensagem de erro
-        showToast('Error', 'Please fill in the required fields correctly.');
-    }
+  // Se o formulário for válido, exibe uma mensagem de sucesso e limpa o formulário
+  if (isValid) {
+    showToast("Success", "Your message has been sent successfully.", "success");
+    cleanForm(); // Limpa os campos do formulário após sucesso
+  } else {
+    // Caso contrário, exibe uma mensagem de erro
+    showToast(
+      "Error",
+      "Please fill in the required fields correctly.",
+      "failure"
+    );
+  }
 };
 
 /*
@@ -73,7 +77,7 @@ Descrição:
 A função `cleanForm` limpa todos os campos do formulário após o envio bem-sucedido da mensagem.
 */
 const cleanForm = () => {
-    document.getElementById('fullname').value = '';
-    document.getElementById('email').value = '';
-    document.getElementById('message').value = '';
-}
+  document.getElementById("fullname").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("message").value = "";
+};

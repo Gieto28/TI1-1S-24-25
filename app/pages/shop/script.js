@@ -58,53 +58,44 @@ const createCard = (product, addItemToCartCallback) => {
 
 const renderProducts = (products) => {
   const productsContainer = document.getElementById("shopProducts");
+  const totalItemsCount = document.getElementById("totalItemsCount");
 
-  // Limpa o container antes de adicionar novos produtos
+  // Clear the container before adding new products
   productsContainer.innerHTML = "";
 
-  // Cria e acrescenta cada card do produto ao container
+  // Create and add each product card with animation
   products.forEach((product) => {
-    const card = createCard(product, addItemToCart); // Cria o card do produto
-    productsContainer.appendChild(card); // Adiciona o card ao container
+    const card = createCard(product, addItemToCart);
+    card.style.opacity = "0";
+    card.style.transition = "opacity 0.5s ease-in-out";
+    productsContainer.appendChild(card);
+    setTimeout(() => (card.style.opacity = "1"), 50); // Fade-in animation
   });
+
+  // Update total items count
+  totalItemsCount.textContent = `${products.length} of ${config.productList.length} products`;
 };
 
 const renderPaginationButtons = (productList) => {
+  const dropdownContainer = document.getElementById("shopProductsDropdown");
   const paginationContainer = document.getElementById("shopPagination");
 
-  // Clear the container before adding new elements
+  // Clear the containers before adding new elements
+  dropdownContainer.innerHTML = "";
   paginationContainer.innerHTML = "";
 
-  // Create wrapper for pagination elements to center them
-  const paginationWrapper = document.createElement("div");
-  paginationWrapper.classList.add(
-    "d-flex",
-    "justify-content-center",
-    "align-items-center",
+  // Items Per Page Dropdown
+  const itemsPerPageDropdown = document.createElement("select");
+  itemsPerPageDropdown.classList.add(
+    "form-select",
+    "form-select-sm",
+    "w-auto",
     "mb-3"
   );
 
-  // Initialize state variables
   let currentPage = 0;
-  let itemsPerPage = 5; // Default items per page
+  let itemsPerPage = 5;
 
-  // Calculate the total number of pages based on itemsPerPage
-  const calculateTotalPages = () =>
-    Math.ceil(productList.length / itemsPerPage);
-
-  // Function to render the current page
-  const renderCurrentPage = () => {
-    const startIndex = currentPage * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const itemsToRender = productList.slice(startIndex, endIndex);
-    renderProducts(itemsToRender); // Update the product display
-  };
-
-  // Create an items-per-page dropdown
-  const itemsPerPageDropdown = document.createElement("select");
-  itemsPerPageDropdown.classList.add("form-select", "w-auto", "ms-3");
-
-  // Populate dropdown with options for limiting items per page
   [5, 10, 15, 20].forEach((optionValue) => {
     const option = document.createElement("option");
     option.value = optionValue;
@@ -113,7 +104,6 @@ const renderPaginationButtons = (productList) => {
     itemsPerPageDropdown.appendChild(option);
   });
 
-  // Event listener to update items per page on dropdown change
   itemsPerPageDropdown.addEventListener("change", () => {
     itemsPerPage = parseInt(itemsPerPageDropdown.value, 10);
     currentPage = 0; // Reset to the first page
@@ -121,64 +111,66 @@ const renderPaginationButtons = (productList) => {
     updatePagination();
   });
 
-  // Function to update pagination buttons and info
+  dropdownContainer.appendChild(itemsPerPageDropdown);
+
+  const calculateTotalPages = () =>
+    Math.ceil(productList.length / itemsPerPage);
+
+  const renderCurrentPage = () => {
+    const startIndex = currentPage * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const itemsToRender = productList.slice(startIndex, endIndex);
+    renderProducts(itemsToRender);
+  };
+
   const updatePagination = () => {
-    // Clear the wrapper
-    paginationWrapper.innerHTML = "";
+    paginationContainer.innerHTML = "";
 
     const totalPages = calculateTotalPages();
 
-    // Left button
+    // Previous Button
     const leftButton = document.createElement("button");
-    leftButton.classList.add("btn", "btn-secondary", "me-2");
-    leftButton.textContent = "←";
-    leftButton.disabled = currentPage === 0; // Disable on the first page
+    leftButton.classList.add("btn", "btn-secondary", "btn-sm");
+    leftButton.textContent = "← Previous";
+    leftButton.disabled = currentPage === 0;
     leftButton.addEventListener("click", () => {
-      currentPage--;
-      renderCurrentPage();
-      updatePagination();
+      if (currentPage > 0) {
+        currentPage--;
+        renderCurrentPage();
+        updatePagination();
+      }
     });
 
-    // Current page indicator
-    const currentPageIndicator = document.createElement("span");
-    currentPageIndicator.classList.add("mx-3");
-    currentPageIndicator.textContent = `Page ${
-      currentPage + 1
-    } of ${totalPages}`;
+    // Page Indicator
+    const pageIndicator = document.createElement("span");
+    pageIndicator.classList.add(
+      "page-indicator",
+      "text-muted",
+      "mx-3",
+      "fw-bold"
+    );
+    pageIndicator.textContent = `Page ${currentPage + 1} of ${totalPages}`;
 
-    // Right button
+    // Next Button
     const rightButton = document.createElement("button");
-    rightButton.classList.add("btn", "btn-secondary", "ms-2");
-    rightButton.textContent = "→";
-    rightButton.disabled = currentPage === totalPages - 1; // Disable on the last page
+    rightButton.classList.add("btn", "btn-secondary", "btn-sm");
+    rightButton.textContent = "Next →";
+    rightButton.disabled = currentPage === totalPages - 1;
     rightButton.addEventListener("click", () => {
-      currentPage++;
-      renderCurrentPage();
-      updatePagination();
+      if (currentPage < totalPages - 1) {
+        currentPage++;
+        renderCurrentPage();
+        updatePagination();
+      }
     });
 
-    // Append buttons and indicator to the wrapper
-    paginationWrapper.appendChild(leftButton);
-    paginationWrapper.appendChild(currentPageIndicator);
-    paginationWrapper.appendChild(rightButton);
-
-    // Update item count display
-    itemCountDisplay.textContent = `Showing ${Math.min(
-      itemsPerPage,
-      productList.length - currentPage * itemsPerPage
-    )} of ${productList.length} items`;
+    // Add elements to pagination container
+    paginationContainer.appendChild(leftButton);
+    paginationContainer.appendChild(pageIndicator);
+    paginationContainer.appendChild(rightButton);
   };
 
-  // Create an item count display
-  const itemCountDisplay = document.createElement("div");
-  itemCountDisplay.classList.add("ms-auto", "text-end");
-
-  // Append the wrapper, dropdown, and item count display to the pagination container
-  paginationContainer.appendChild(paginationWrapper);
-  paginationContainer.appendChild(itemsPerPageDropdown);
-  paginationContainer.appendChild(itemCountDisplay);
-
-  // Initial render
+  // Initial Render
   renderCurrentPage();
   updatePagination();
 };

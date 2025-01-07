@@ -1,0 +1,37 @@
+.toast {
+    animation: fadeIn 0.5s ease, fadeOut 0.5s ease 7s forwards;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.toast-header {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.toast-body img {
+    border-radius: 50%;
+    border: 2px solid #ddd;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+.toast-container {
+    z-index: 1055; /* Ensure it appears above other elements */
+}

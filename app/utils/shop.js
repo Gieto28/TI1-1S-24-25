@@ -30,7 +30,7 @@ export const addItemToCart = (item) => {
 
   storageHandler.setItem("cart", cart); // Atualiza o carrinho no localStorage
 
-  showToast("Item added to cart", item.name); // Mostra uma notificação toast
+  showToast("Item added to cart", item.name, "success"); // Mostra uma notificação toast
 
   updateEverythingBasedOnCart(); // Atualiza a interface do carrinho e os detalhes da encomenda
 };
