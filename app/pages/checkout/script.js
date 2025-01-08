@@ -1,5 +1,13 @@
-// Import required functions
+/*
+Este ficheiro: Carregamento e Gestão do Carrinho de Compras e Checkout
 
+Descrição:
+Este ficheiro JavaScript lida com a funcionalidade do carrinho de compras e o processo de checkout na página de finalização de compra. 
+Inclui funções para adicionar, remover e ajustar as quantidades dos itens no carrinho, exibir o total da compra, 
+e processar o checkout. A função `showToast` é utilizada para mostrar notificações ao utilizador.
+*/
+
+// Importa funções necessárias para exibir notificações e manipular o carrinho e o armazenamento local
 import { showToast } from "../../components/toast/script.js";
 import {
   decrementItemQuantity,
@@ -10,24 +18,33 @@ import {
 } from "../../utils/shop.js";
 import { storageHandler } from "../../utils/storage.js";
 
+// Função principal que carrega o conteúdo da página de checkout
 export const loadCheckoutContent = () => {
-  populateCart();
+  populateCart(); // Popula o carrinho com itens do armazenamento
 
   const checkoutButton = document.getElementById("checkoutButton");
 
+  // Adiciona um event listener ao botão de checkout
   checkoutButton.addEventListener("click", checkout);
 };
 
-// Function to populate the cart dynamically
+/*
+Função: populateCart
+
+Descrição:
+A função `populateCart` popula dinamicamente a área do carrinho com os itens armazenados no armazenamento local.
+Se não houver itens no carrinho, exibe uma mensagem a informar que o carrinho está vazio. 
+A função também é responsável por renderizar os itens, incluindo a imagem, nome, descrição, quantidade e preço de cada produto.
+*/
 export const populateCart = () => {
   const cart = storageHandler.getItem("cart") || [];
 
   const cartContainer = document.querySelector(".col-12.col-md-8");
 
-  // Clear existing items
+  // Limpa os itens existentes no carrinho
   cartContainer.innerHTML = "";
 
-  // Populate with items
+  // Popula o carrinho com os itens
   cart.forEach((item) => {
     const itemCard = document.createElement("div");
     itemCard.className = "card mb-4 shadow-sm border-light";
@@ -70,20 +87,27 @@ export const populateCart = () => {
     cartContainer.appendChild(itemCard);
   });
 
+  // Se o carrinho estiver vazio, exibe uma mensagem com essa informação
   if (cart.length === 0) {
     cartContainer.innerHTML =
       "<p class='text-muted text-center'>Your cart is empty.</p>";
   }
 
-  updateOrderDetails();
+  updateOrderDetails(); // Atualiza os detalhes do pedido (preços, totais, etc.)
 };
 
-// Function to update the order details
+/*
+Função: updateOrderDetails
+
+Descrição:
+A função `updateOrderDetails` atualiza o total da compra, incluindo o preço dos produtos e o custo de envio. 
+Esta calcula e exibe o preço total, o custo de envio (assumido como fixo de 14 €) e o total estimado.
+*/
 export const updateOrderDetails = () => {
-  // Find all elements with the class "fw-bold"
+  // Encontra os elementos com a classe "fw-bold"
   const boldElements = document.querySelectorAll(".fw-bold");
 
-  // Locate the element containing the specific text "Est. Total:"
+  // Localiza o elemento com o texto "Est. Total:"
   const totalElement = Array.from(boldElements).find(
     (el) => el.textContent.trim() === "Est. Total:"
   );
@@ -95,7 +119,7 @@ export const updateOrderDetails = () => {
 
   const totalValueElement = totalElement.nextElementSibling;
 
-  // Similarly, find the "Price:" element
+  // Localiza o elemento "Price:"
   const priceElements = document.querySelectorAll("p");
   const priceElement = Array.from(priceElements).find(
     (el) => el.textContent.trim() === "Price:"
@@ -110,21 +134,56 @@ export const updateOrderDetails = () => {
 
   const priceValueElement = priceElement.nextElementSibling;
 
-  const cartTotal = getCartTotal();
+  const cartTotal = getCartTotal(); // Obtém o total do carrinho
+
+  // Atualiza os valores dos elementos com os totais calculados
+  priceValueElement.textContent = `${cartTotal.toLocaleString("en", {
+    minimumFractionDigits: 2,
+  })} €`;
 
   shippingValue.innerHTML =
-    (+cartTotal ? 14 : 0).toLocaleString("en", {
+    (cartTotal ? 14 : 0).toLocaleString("en", {
       minimumFractionDigits: 2,
-    }) + " €";
+    }) + " €"; // Aplica o custo de envio fixo de 14 €
 
-  // Update the text content with calculated values
-  priceValueElement.textContent = `${cartTotal} €`;
   totalValueElement.textContent = `${(
-    +cartTotal + (+cartTotal ? 14 : 0)
-  ).toLocaleString("en", { minimumFractionDigits: 2 })} €`; // Assuming a fixed shipping cost of 14 €
+    cartTotal + (+cartTotal ? 14 : 0)
+  ).toLocaleString("en", { minimumFractionDigits: 2 })} €`; // Total estimado com envio
 };
 
-// Event listener for cart actions
+/*
+Função: checkout
+
+Descrição:
+A função `checkout` é chamada quando o utilizador clica no botão de checkout. 
+Esta exibe uma mensagem de sucesso ou erro e limpa o carrinho de compras após a finalização do checkout.
+*/
+function checkout() {
+  const cart = storageHandler.getItem("cart") || [];
+
+  if (cart.length === 0) {
+    showToast("Checkout failed!", "Your cart is empty.", "failure");
+    return;
+  }
+
+  showToast(
+    "Checkout success!",
+    "You'll soon receive a confirmation email.",
+    "success"
+  );
+
+  // Remove todos os itens do carrinho
+  removeAllItemsFromCart();
+
+  populateCart(); // Re-renderiza o carrinho após o checkout
+}
+
+/*
+Event listener global para ações no carrinho (remover item, aumentar/decrementar quantidade)
+Descrição:
+Este listener escuta eventos de clique e executa ações no carrinho, como remover itens ou ajustar quantidades.
+Após qualquer ação, o carrinho é re-renderizado.
+*/
 document.addEventListener("click", (e) => {
   const action = e.target.dataset.action;
   const id = e.target.dataset.id;
@@ -133,23 +192,15 @@ document.addEventListener("click", (e) => {
 
   switch (action) {
     case "remove":
-      removeItemFromCart(id);
+      removeItemFromCart(id); // Remove o item do carrinho
       break;
     case "decrement":
-      decrementItemQuantity(id);
+      decrementItemQuantity(id); // Decrementa a quantidade do item
       break;
     case "increment":
-      incrementItemQuantity(id);
+      incrementItemQuantity(id); // Incrementa a quantidade do item
       break;
   }
 
-  populateCart(); // Re-render the cart after any action
+  populateCart(); // Re-renderiza o carrinho após qualquer ação
 });
-
-function checkout() {
-  showToast("Checkout success!", "You'll soon receive a confirmation email.");
-
-  removeAllItemsFromCart();
-
-  populateCart();
-}

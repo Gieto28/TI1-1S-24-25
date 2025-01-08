@@ -1,10 +1,25 @@
+/*
+Este ficheiro: Carregamento de Conteúdo da Loja e Renderização Dinâmica
+
+Descrição:
+Este ficheiro JavaScript é responsável por gerir o carregamento de conteúdo dinâmico para a página da loja. 
+Inclui funções para renderizar o carrossel de imagens da loja, criar e renderizar cartões de produtos, 
+e adicionar interatividade para adicionar produtos ao carrinho. Os dados dos produtos são configurados com base nas definições globais.
+*/
+
+// Importa a configuração global da aplicação
 import { config } from "../../../config.js";
+
+// Importa a função para criar carrosséis de imagens
 import { createCarousel } from "../../components/carousel/script.js";
+
+// Importa a função para adicionar produtos ao carrinho
 import { addItemToCart } from "../../utils/shop.js";
 
 export const loadShopContent = () => {
   renderCarousel(); // Renderiza o carrossel da loja
-  renderProducts(config.products); // Renderiza os produtos disponíveis na loja
+  renderProducts(config.productList); // Renderiza os produtos disponíveis na loja
+  renderPaginationButtons(config.productList); // Renderiza os botões de paginação
 };
 
 const createCard = (product, addItemToCartCallback) => {
@@ -43,15 +58,121 @@ const createCard = (product, addItemToCartCallback) => {
 
 const renderProducts = (products) => {
   const productsContainer = document.getElementById("shopProducts");
+  const totalItemsCount = document.getElementById("totalItemsCount");
 
-  // Limpa o container antes de adicionar novos produtos
+  // Clear the container before adding new products
   productsContainer.innerHTML = "";
 
-  // Cria e acrescenta cada card do produto ao container
+  // Create and add each product card with animation
   products.forEach((product) => {
-    const card = createCard(product, addItemToCart); // Cria o card do produto
-    productsContainer.appendChild(card); // Adiciona o card ao container
+    const card = createCard(product, addItemToCart);
+    card.style.opacity = "0";
+    card.style.transition = "opacity 0.5s ease-in-out";
+    productsContainer.appendChild(card);
+    setTimeout(() => (card.style.opacity = "1"), 50); // Fade-in animation
   });
+
+  // Update total items count
+  totalItemsCount.textContent = `${products.length} of ${config.productList.length} products`;
+};
+
+const renderPaginationButtons = (productList) => {
+  const dropdownContainer = document.getElementById("shopProductsDropdown");
+  const paginationContainer = document.getElementById("shopPagination");
+
+  // Clear the containers before adding new elements
+  dropdownContainer.innerHTML = "";
+  paginationContainer.innerHTML = "";
+
+  // Items Per Page Dropdown
+  const itemsPerPageDropdown = document.createElement("select");
+  itemsPerPageDropdown.classList.add(
+    "form-select",
+    "form-select-sm",
+    "w-auto",
+    "mb-3"
+  );
+
+  let currentPage = 0;
+  let itemsPerPage = 5;
+
+  [5, 10, 15, 20].forEach((optionValue) => {
+    const option = document.createElement("option");
+    option.value = optionValue;
+    option.textContent = `${optionValue} items per page`;
+    if (optionValue === itemsPerPage) option.selected = true;
+    itemsPerPageDropdown.appendChild(option);
+  });
+
+  itemsPerPageDropdown.addEventListener("change", () => {
+    itemsPerPage = parseInt(itemsPerPageDropdown.value, 10);
+    currentPage = 0; // Reset to the first page
+    renderCurrentPage();
+    updatePagination();
+  });
+
+  dropdownContainer.appendChild(itemsPerPageDropdown);
+
+  const calculateTotalPages = () =>
+    Math.ceil(productList.length / itemsPerPage);
+
+  const renderCurrentPage = () => {
+    const startIndex = currentPage * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const itemsToRender = productList.slice(startIndex, endIndex);
+    renderProducts(itemsToRender);
+  };
+
+  const updatePagination = () => {
+    paginationContainer.innerHTML = "";
+
+    const totalPages = calculateTotalPages();
+
+    // Previous Button
+    const leftButton = document.createElement("button");
+    leftButton.classList.add("btn", "btn-secondary", "btn-sm");
+    leftButton.textContent = "← Previous";
+    leftButton.disabled = currentPage === 0;
+    leftButton.addEventListener("click", () => {
+      if (currentPage > 0) {
+        currentPage--;
+        renderCurrentPage();
+        updatePagination();
+      }
+    });
+
+    // Page Indicator
+    const pageIndicator = document.createElement("span");
+    pageIndicator.classList.add(
+      "page-indicator",
+      "text-muted",
+      "mx-3",
+      "fw-bold"
+    );
+    pageIndicator.textContent = `Page ${currentPage + 1} of ${totalPages}`;
+
+    // Next Button
+    const rightButton = document.createElement("button");
+    rightButton.classList.add("btn", "btn-secondary", "btn-sm");
+    rightButton.textContent = "Next →";
+    rightButton.disabled = currentPage === totalPages - 1;
+    rightButton.addEventListener("click", () => {
+      if (currentPage < totalPages - 1) {
+        currentPage++;
+        renderCurrentPage();
+        updatePagination();
+      }
+    });
+
+    // Add elements to pagination container
+    paginationContainer.appendChild(leftButton);
+    paginationContainer.appendChild(pageIndicator);
+    paginationContainer.appendChild(rightButton);
+  };
+
+  // Initial Render
+  renderCurrentPage();
+  updatePagination();
 };
 
 const renderCarousel = () => {

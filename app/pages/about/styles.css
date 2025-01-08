@@ -1,4 +1,18 @@
+/*
+Este ficheiro: Estilos para o Componente `figcaption`
+
+Descrição:
+Este bloco de código é responsável por definir a aparência e comportamento do pseudo-elemento `::before` no elemento `figcaption`.
+Este remove o conteúdo e oculta o pseudo-elemento, garantindo que não seja exibido antes do conteúdo principal da legenda da figura.
+
+Especificações:
+- A propriedade `content: none;` impede que qualquer conteúdo seja gerado antes do conteúdo real da legenda.
+- A propriedade `display: none;` oculta completamente o pseudo-elemento, tornando-o invisível e a não ocupar espaço no layout.
+*/
+
 figcaption::before {
+    /* Remove o conteúdo gerado pelo pseudo-elemento antes do conteúdo real */
     content: none;
+    /* Oculta o pseudo-elemento, sem ocupar espaço na renderização */
     display: none;
 }

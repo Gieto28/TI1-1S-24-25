@@ -1,8 +1,19 @@
+/*
+Este ficheiro: Carregamento Dinâmico de Componentes e Conteúdo de Páginas
+
+Descrição:
+Este ficheiro JavaScript gere o carregamento dinâmico de componentes HTML e conteúdos de páginas. 
+Inclui funções para inserir placeholders de componentes, carregar páginas dinamicamente com base no nome da página, 
+e invocar funções específicas para carregar conteúdos adicionais em páginas como a loja, contacto, ou checkout. 
+Os estados das páginas são também sincronizados com o armazenamento local.
+*/
+
+// Importa funções para gestão da barra de navegação e carregamento de conteúdos específicos de páginas
 import { closeNavabrCollapse } from "../components/header/script.js";
 import { loadCheckoutContent } from "../pages/checkout/script.js";
 import { loadContactContent } from "../pages/contact/script.js";
 import { loadShopContent } from "../pages/shop/script.js";
-import { storageHandler } from "../utils/storage.js";
+import { storageHandler } from "../utils/storage.js"; // Importa o gestor de armazenamento local
 
 // Função para carregar um ficheiro HTML externo e inseri-lo como um placeholder
 export async function loadComponent(selector, url) {
