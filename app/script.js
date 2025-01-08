@@ -12,6 +12,7 @@ import { loadComponent, loadPage } from "../app/utils/components.js";
 import { intializeFeatureFlags } from "../app/utils/config.js";
 import { storageHandler } from "../app/utils/storage.js";
 import { loadHeaderContent } from "./components/header/script.js";
+import { showCookieModal } from "./components/cookies/script.js";
 
 // Função global para carregar dinamicamente uma página
 window.loadPage = (pageName) => {
@@ -41,4 +42,6 @@ window.loadPage = (pageName) => {
 
   // Inicializa os sinalizadores de funcionalidades com base nas definições armazenadas ou padrões
   intializeFeatureFlags();
+
+  showCookieModal();
 })();
