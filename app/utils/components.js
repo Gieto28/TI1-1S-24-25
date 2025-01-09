@@ -14,6 +14,7 @@ import { loadCheckoutContent } from "../pages/checkout/script.js";
 import { loadContactContent } from "../pages/contact/script.js";
 import { loadShopContent } from "../pages/shop/script.js";
 import { storageHandler } from "../utils/storage.js"; // Importa o gestor de armazenamento local
+import { loadCalendarContent } from "../pages/appointments/script.js";
 
 // Função para carregar um ficheiro HTML externo e inseri-lo como um placeholder
 export async function loadComponent(selector, url) {
@@ -44,4 +45,5 @@ const loadPageContent = {
   shop: () => loadShopContent(),
   contact: () => loadContactContent(),
   checkout: () => loadCheckoutContent(),
+  appointments: () => loadCalendarContent(),
 };

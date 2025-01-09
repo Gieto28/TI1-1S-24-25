@@ -1,0 +1,49 @@
+<section class="py-md-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+            <h2 class="mb-4 display-5 text-center fw-bold">Book Your Appointment</h2>
+            <p class="lead text-muted">We're excited to give you the perfect haircut! Fill out the form below to schedule your appointment with one of our talented barbers. We’ll confirm your booking as soon as possible and get you looking sharp!</p>
+            <hr class="w-50 mx-auto mt-5 mb-5 mb-xl-9 border-dark-subtle">
+        </div>
+    </div>
+    <div class="container my-3">
+        <div class="d-flex justify-content-between align-items-center mb-5">
+            <button id="prevMonth" class="btn btn-outline-secondary">❮</button>
+            <h3 id="currentMonth" class="mb-0">January 2025</h3>
+            <button id="nextMonth" class="btn btn-outline-secondary">❯</button>
+            <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addEventModal">Add Event</button>
+        </div>
+        <div id="calendarGrid" class="row"></div>
+    </div>
+
+    <div class="modal fade" id="addEventModal" tabindex="-1" aria-labelledby="addEventModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content rounded-3 shadow">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addEventModalLabel">Add Event</h5>
+                    <button type="button" class="btn-close btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addEventForm">
+                        <div class="mb-4">
+                            <label for="eventDate" class="form-label fw-bold">Date <span class="text-danger">*</span></label>
+                            <input type="date" class="form-control" id="eventDate" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="eventTitle" class="form-label fw-bold">Event Title <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="eventTitle" placeholder="Enter event title"
+                                required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="eventDescription" class="form-label fw-bold">Event Description <span class="text-danger">*</span></label>
+                            <textarea class="form-control" id="eventDescription" rows="4"
+                                placeholder="Describe your event" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-secondary py-2">Save Event</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</section>
