@@ -31,7 +31,8 @@ const createCard = (product, addItemToCartCallback) => {
     "col-md-4",
     "col-xl-3",
     "col-xxl-2",
-    "mb-4"
+    "mb-4",
+    "animate__animated" // Class for animations
   );
 
   // Define a apresentação do conteúdo do cartão em html, com imagem, nome, descrição, preço e botão de adicionar item ao carrinho
@@ -51,7 +52,18 @@ const createCard = (product, addItemToCartCallback) => {
   const button = card.querySelector("button");
 
   // Adiciona um Event Listener ao botão que chama a função de adicionar item ao carrinho
-  button.addEventListener("click", () => addItemToCartCallback(product));
+  button.addEventListener("click", () => {
+    // Add a quick bounce effect to the card on button click
+    card.classList.add("animate__bounce");
+
+    // Remove the bounce class after the animation ends to allow re-trigger
+    card.addEventListener("animationend", () => {
+      card.classList.remove("animate__bounce");
+    });
+
+    // Call the callback function
+    addItemToCartCallback(product);
+  });
 
   return card; // Retorna o card do produto
 };
@@ -194,4 +206,15 @@ const renderCarousel = () => {
 
   // Adiciona o carrossel criado ao conteúdo do banner da loja
   shopBanner.innerHTML = shopCarousel;
+
+  const carouselElement = document.getElementById(carouselId);
+
+  if (carouselElement) {
+    const bootstrapCarousel = new bootstrap.Carousel(carouselElement, {
+      interval: 2000, // Intervalo de 2 segundos
+      wrap: true, // Faz o loop
+    });
+
+    bootstrapCarousel.cycle(); // Inicia o car
+  }
 };
