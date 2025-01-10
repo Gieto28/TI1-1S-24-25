@@ -9,55 +9,52 @@ Também contém um contentor de notificações do tipo "toast" para alertas e me
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Define o título da página, exibido no separador do navegador -->
-    <title>ChopChop Barbers & Shop</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Define o ícone da página (favicon), exibido no separador do navegador -->
-    <link rel="icon" href="../app//assets/icons/icon-dark-mode.png" />
+  <!-- Define o título da página, exibido no separador do navegador -->
+  <title>ChopChop Barbers & Shop</title>
 
-    <!-- Importa o framework CSS Bootstrap para um layout responsivo e estilos consistentes -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <!-- Importa a biblioteca de ícones Bootstrap para ícones personalizados -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
-      rel="stylesheet"
-    />
+  <!-- Define o ícone da página (favicon), exibido no separador do navegador -->
+  <link rel="icon" href="../app//assets/icons/icon-dark-mode.png" />
 
-    <!-- Importa estilos personalizados específicos da página -->
-    <link href="../app/pages/about/styles.css" rel="stylesheet" />
-    <link href="../app/pages/shop/styles.css" rel="stylesheet" />
-    <link href="../app/components/toast/styles.css" rel="stylesheet" />
-  </head>
+  <!-- Importa o framework CSS Bootstrap para um layout responsivo e estilos consistentes -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Importa a biblioteca de ícones Bootstrap para ícones personalizados -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
 
-  <body>
-    <!-- Secção do header onde o seu conteúdo do website será carregado dinamicamente -->
-    <header id="header"></header>
+  <!-- Importa estilos personalizados específicos da página -->
+  <link href="../app/pages/about/styles.css" rel="stylesheet" />
+  <link href="../app/pages/shop/styles.css" rel="stylesheet" />
+  <link href="../app/pages/appointments/style.css" rel="stylesheet" />
+  <link href="../app/components/toast/styles.css" rel="stylesheet" />
+</head>
 
-    <!-- Secção de conteúdo principal onde o conteúdo específico da página será exibido -->
-    <main id="body" class="py-4 container"></main>
+<body>
+  <!-- Secção do header onde o seu conteúdo do website será carregado dinamicamente -->
+  <header id="header"></header>
 
-    <!-- Secção do footer onde o seu conteúdo do website será carregado dinamicamente -->
-    <footer id="footer"></footer>
+  <!-- Secção de conteúdo principal onde o conteúdo específico da página será exibido -->
+  <main id="body" class="py-4 container"></main>
 
-    <!-- Contentor para exibir notificações do tipo "toast" -->
-    <div id="toastContainer" class="toast-container position-fixed"></div>
+  <!-- Secção do footer onde o seu conteúdo do website será carregado dinamicamente -->
+  <footer id="footer"></footer>
 
-    <div id="modalContainer"></div>
-  </body>
+  <!-- Contentor para exibir notificações do tipo "toast" -->
+  <div id="toastContainer" class="toast-container position-fixed"></div>
 
-  <!-- Script inicial para gerir o conteúdo dinâmico e o comportamento da página -->
-  <script src="./script.js" type="module"></script>
+  <div id="modalContainer"></div>
+</body>
 
-  <!-- Script para gerir o chatbot -->
-  <script src="./chatbot.js" type="module"></script>
+<!-- Script inicial para gerir o conteúdo dinâmico e o comportamento da página -->
+<script src="./script.js" type="module"></script>
 
-  <!-- Importa o JS do Bootstrap para gerir os componentes interativos do Bootstrap -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Script para gerir o chatbot -->
+<script src="./chatbot.js" type="module"></script>
+
+<!-- Importa o JS do Bootstrap para gerir os componentes interativos do Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </html>

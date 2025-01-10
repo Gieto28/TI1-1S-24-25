@@ -1,19 +1,19 @@
-<section class="py-md-5 mb-5">
-    <div class="row justify-content-center">
+<section class="y-3 py-md-5">
+    <div class="container">
+      <div class="row justify-content-center">
         <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
             <h2 class="mb-4 display-5 text-center fw-bold">Book Your Appointment</h2>
             <p class="lead text-muted">We're excited to give you the perfect haircut! Fill out the form below to schedule your appointment with one of our talented barbers. We’ll confirm your booking as soon as possible and get you looking sharp!</p>
             <hr class="w-50 mx-auto mt-5 mb-5 mb-xl-9 border-dark-subtle">
         </div>
     </div>
-    <div class="container my-3">
-        <div class="d-flex justify-content-between align-items-center mb-5">
-            <button id="prevMonth" class="btn btn-outline-secondary">❮</button>
-            <h3 id="currentMonth" class="mb-0">January 2025</h3>
-            <button id="nextMonth" class="btn btn-outline-secondary">❯</button>
-            <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addEventModal">Add Event</button>
+    <div class="container mb-5">
+        <div class="calendar-navigation d-flex justify-content-between mb-5">
+            <button id="prevMonth" type="button"></button>
+            <span id="currentMonth" class="text-center fw-bold"></span>
+            <button id="nextMonth" type="button"></button>
         </div>
-        <div id="calendarGrid" class="row"></div>
+        <div id="calendarGrid" class="mb-5"></div>
     </div>
 
     <div class="modal fade" id="addEventModal" tabindex="-1" aria-labelledby="addEventModalLabel" aria-hidden="true">
@@ -45,5 +45,5 @@
             </div>
         </div>
     </div>
-    
+    </div>
 </section>

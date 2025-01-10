@@ -1,3 +1,5 @@
+import { showToast } from "../../components/toast/script.js";
+
 /*
 Este ficheiro: Funcionalidade de Calendário de Agendamentos de Barbearia
 
@@ -7,8 +9,10 @@ Ele permite ao utilizador navegar entre os meses, visualizar os dias com agendam
 A funcionalidade é composta por renderização do calendário, navegação entre meses, e criação de eventos através de um formulário dentro de um modal.
 */
 
-const year = 2025; // Definição do ano fixo para o calendário
-let currentMonthIndex = 0; // Índice do mês atual (0 para Janeiro)
+const today = new Date(); // Data atual
+let year = today.getFullYear(); // Ano atual
+let currentMonthIndex = today.getMonth(); // Mês atual (0 para Janeiro)
+const currentDay = today.getDate(); // Dia atual
 const months = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
@@ -30,7 +34,6 @@ export const loadCalendarContent = () => {
     renderCalendarHeader(); // Renderiza o cabeçalho com o mês e ano
     renderMonthGrid(currentMonthIndex); // Renderiza a grelha do mês
     attachNavigation(); // Adiciona a funcionalidade de navegação entre meses
-    attachAddEventButton(); // Adiciona a funcionalidade de adicionar evento
 };
 
 /*
@@ -56,6 +59,7 @@ A função `renderMonthGrid` gera e exibe a grelha do calendário para o mês at
 - Adicionar os dias da semana como cabeçalhos.
 - Preencher a grelha com os dias do mês, incluindo células vazias no início e no final do mês.
 - Destacar os dias que possuem eventos.
+- Desabilitar os dias anteriores ao dia atual.
 */
 const renderMonthGrid = (monthIndex) => {
     const firstDay = new Date(year, monthIndex, 1); // Primeiro dia do mês
@@ -89,31 +93,54 @@ const renderMonthGrid = (monthIndex) => {
 
     // Cria células para cada dia do mês
     for (let day = 1; day <= daysInMonth; day++) {
-        const dayCell = document.createElement('div');
-        dayCell.classList.add('col', 'border', 'py-3', 'clickable', 'd-flex', 'justify-content-center', 'align-items-center');
+        const dayCell = document.createElement('button');
+        dayCell.classList.add('col', 'border', 'py-4', 'clickable', 'd-flex', 'justify-content-center', 'align-items-center');
         dayCell.textContent = day;
 
-        dayCell.addEventListener('click', () => {
-            document.getElementById('eventDate').value = `${day} ${months[monthIndex]} ${year}`; // Preenche a data do evento ao clicar no dia
-        });
+        // Desabilita os dias anteriores ao dia atual, mas apenas no ano atual
+        const isBeforeToday =
+            (year === today.getFullYear() && monthIndex === today.getMonth() && day < currentDay) ||
+            (year === today.getFullYear() && monthIndex < today.getMonth()) ||
+            (year < today.getFullYear());
+
+        if (isBeforeToday) {
+            dayCell.classList.add('bg-light', 'text-muted');
+
+            // Adiciona evento para exibir toast
+            dayCell.addEventListener('click', () => {
+                showToast(
+                    "Unavailable Date",
+                    "You cannot select a date in the past.",
+                    "failure"
+                );
+            });
+        } else {
+            dayCell.classList.add('valid-day');
+            dayCell.addEventListener('click', () => {
+                const eventDateInput = document.getElementById('eventDate');
+                if (eventDateInput) {
+                    eventDateInput.value = `${day} ${months[monthIndex]} ${year}`;
+                }
+                const modal = new bootstrap.Modal(document.getElementById('addEventModal'));
+                modal.show();
+            });
+        }
 
         // Verifica se o dia tem eventos e destaca a célula
         const eventForDay = events.find(event => event.date === `${day} ${months[monthIndex]} ${year}`);
         if (eventForDay) {
-            dayCell.classList.add('bg-warning'); // Destaca os dias com eventos
+            dayCell.classList.add('bg-warning');
         }
 
         daysRow.appendChild(dayCell);
 
-        // Quando chega no sábado, começa uma nova linha
         if ((startDay + day) % 7 === 0) {
-            calendarGrid.appendChild(daysRow); // Adiciona a linha anterior à grelha
-            daysRow = document.createElement('div'); // Cria uma nova linha para a próxima semana
+            calendarGrid.appendChild(daysRow);
+            daysRow = document.createElement('div');
             daysRow.classList.add('row');
         }
     }
 
-    // Se restar dias após o sábado, adiciona a linha final com células vazias
     const remainingCells = 7 - daysRow.children.length;
     for (let i = 0; i < remainingCells && remainingCells !== 7; i++) {
         const emptyCell = document.createElement('div');
@@ -122,73 +149,55 @@ const renderMonthGrid = (monthIndex) => {
     }
 
     if (daysRow.children.length > 0) {
-        calendarGrid.appendChild(daysRow); // Adiciona a última linha à grelha
+        calendarGrid.appendChild(daysRow);
     }
 };
 
-/*
-Função: attachNavigation
-
-Descrição:
-A função `attachNavigation` é responsável por adicionar os listeners de evento aos botões de navegação, permitindo ao utilizador navegar entre os meses.
-Ela verifica se o mês atual não é o primeiro ou o último, para evitar erros na navegação.
-*/
 const attachNavigation = () => {
     const prevMonthButton = document.getElementById('prevMonth');
     const nextMonthButton = document.getElementById('nextMonth');
 
+    const updateButtonStyles = (button, label) => {
+        button.textContent = label;
+        button.classList.add("btn", "btn-sm", 'pagination-container');
+    };
+
     if (prevMonthButton) {
+        updateButtonStyles(prevMonthButton, "← Previous");
+
+        // Verifica se estamos no mês atual (não deixa ir para o mês anterior no ano atual)
         prevMonthButton.addEventListener('click', () => {
             if (currentMonthIndex > 0) {
-                currentMonthIndex--; // Decrementa o índice do mês
-                renderCalendarHeader(); // Atualiza o cabeçalho
-                renderMonthGrid(currentMonthIndex); // Atualiza a grelha do mês
+                currentMonthIndex--;
+            } else if (year > today.getFullYear()) {
+                currentMonthIndex = 11; // Volta para dezembro
+                year--; // Volta para o ano anterior
+            } else {
+                showToast(
+                    "Invalid Navigation",
+                    "You cannot navigate to a previous month in the current year.",
+                    "failure"
+                );
+                return;
             }
+            renderCalendarHeader();
+            renderMonthGrid(currentMonthIndex);
         });
     }
 
     if (nextMonthButton) {
+        updateButtonStyles(nextMonthButton, "Next →");
+
+        // Verifica se estamos no último mês do ano
         nextMonthButton.addEventListener('click', () => {
             if (currentMonthIndex < 11) {
-                currentMonthIndex++; // Incrementa o índice do mês
-                renderCalendarHeader(); // Atualiza o cabeçalho
-                renderMonthGrid(currentMonthIndex); // Atualiza a grelha do mês
+                currentMonthIndex++;
+            } else {
+                currentMonthIndex = 0; // Avança para janeiro
+                year++; // Avança para o próximo ano
             }
-        });
-    }
-};
-
-/*
-Função: attachAddEventButton
-
-Descrição:
-A função `attachAddEventButton` adiciona a funcionalidade de adicionar um evento ao calendário. 
-Ela escuta o envio do formulário dentro do modal e adiciona um novo evento ao array de eventos.
-Ao submeter o formulário, o evento é armazenado e o calendário é atualizado.
-*/
-const attachAddEventButton = () => {
-    const addEventForm = document.getElementById('addEventForm');
-
-    if (addEventForm) {
-        addEventForm.addEventListener('submit', (event) => {
-            event.preventDefault(); // Impede o envio padrão do formulário
-
-            const eventDate = document.getElementById('eventDate').value;
-            const eventTitle = document.getElementById('eventTitle').value;
-            const eventDescription = document.getElementById('eventDescription').value;
-
-            // Adiciona o novo evento ao array
-            events.push({
-                date: eventDate,
-                title: eventTitle,
-                description: eventDescription
-            });
-
-            addEventForm.reset(); // Reseta os campos do formulário
-            const modal = new bootstrap.Modal(document.getElementById('addEventModal'));
-            modal.hide(); // Fecha o modal após adicionar o evento
-
-            renderMonthGrid(currentMonthIndex); // Atualiza a grelha do mês
+            renderCalendarHeader();
+            renderMonthGrid(currentMonthIndex);
         });
     }
 };

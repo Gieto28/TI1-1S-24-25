@@ -1,0 +1,25 @@
+button.clickable {
+    background-color: white;
+}
+
+.valid-day:hover {
+    background-image: url('../../assets/logos/banner-light-mode.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: transparent;
+}
+
+
+/* Pagination Container */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 1rem;
+  }
+  
