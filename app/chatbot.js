@@ -1,11 +1,11 @@
-/**
- * Este script é responsável por integrar o Landbot à aplicação, configurando um popup interativo.
- *
- * Funcionalidades principais:
- * 1. Inicializa o Landbot ao interagir pela primeira vez com a página (mouseover ou toque).
- * 2. Carrega o script necessário do Landbot de forma assíncrona.
- * 3. Configura o Landbot Popup com uma URL de configuração específica.
- * 4. Garante que o Landbot seja carregado apenas uma vez por sessão.
+/*
+Este ficheiro: Integraa o Landbot à aplicação, configurando um popup interativo.
+ 
+Descrição:
+1. Inicializa o Landbot ao interagir pela primeira vez com a página (mouseover ou toque).
+2. Carrega o script necessário do Landbot de forma assíncrona.
+3. Configura o Landbot Popup com um URL de configuração específica.
+4. Garante que o Landbot seja carregado apenas uma vez por sessão.
  */
 
 window.addEventListener("mouseover", initLandbot, { once: true });

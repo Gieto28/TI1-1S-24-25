@@ -1,7 +1,17 @@
+/*
+Este ficheiro: Gestão de Toasts Dinâmicos
+
+Descrição:
+Este ficheiro JavaScript é responsável pela criação e exibição de "toasts" (mensagens de feedback), com diferentes tipos (sucesso, falha, aviso, informação). 
+Inclui funções para iniciar o temporizador de cada toast, exibir e ocultar os toasts dinamicamente, 
+e ajustar a posição e o tempo de visualização conforme o tipo de mensagem.
+*/
+
 // Variável para o temporizador do toast
 let toastTimer;
 
 // Função: createToastHTML
+// Cria o HTML necessário para um toast. Esta função gera a estrutura do toast, incluindo o ícone do tipo de mensagem, o título, a mensagem, a imagem (se fornecida) e o tempo de exibição.
 const createToastHTML = (id, title, message, imageUrl, type) => {
   const icons = {
     success: "✅",
@@ -20,8 +30,8 @@ const createToastHTML = (id, title, message, imageUrl, type) => {
                 : "bg-primary text-white"
             }">
                 <strong class="me-auto">${icons[type]} ${title}</strong>
-                <small class="toast-time">now</small>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                <small class="toast-time">agora</small>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Fechar"></button>
             </div>
             <div class="toast-body d-flex align-items-center">
                 ${
@@ -36,6 +46,8 @@ const createToastHTML = (id, title, message, imageUrl, type) => {
 };
 
 // Função: startClockForToast
+// Inicia o temporizador para atualizar o tempo de exibição do toast. 
+// A cada minuto, o tempo é atualizado e exibido no formato "x minutos atrás" ou "agora" para o primeiro minuto.
 const startClockForToast = (toastElement) => {
   let time = 0;
   const timeElement = toastElement.querySelector(".toast-time");
@@ -43,7 +55,7 @@ const startClockForToast = (toastElement) => {
   if (toastTimer) clearInterval(toastTimer);
 
   const updateTime = () => {
-    timeElement.textContent = time === 0 ? "now" : `${time} min ago`;
+    timeElement.textContent = time === 0 ? "agora" : `${time} min atrás`;
     time += 1;
   };
 
@@ -52,6 +64,9 @@ const startClockForToast = (toastElement) => {
 };
 
 // Função: showToast
+// Exibe um novo toast na tela. Esta função cria um novo toast com o título, a mensagem e o tipo fornecido. 
+// Define a posição do toast dependendo do tamanho da tela e remove toasts antigos, se necessário. 
+// O toast é exibido por um tempo determinado, após o qual ele desaparece da tela.
 export const showToast = (title, message, type = "info", imageUrl = null) => {
   const container = document.getElementById("toastContainer");
 
@@ -63,7 +78,7 @@ export const showToast = (title, message, type = "info", imageUrl = null) => {
       ? "toast-container position-fixed top-0 start-50 translate-middle-x p-3"
       : "toast-container position-fixed bottom-0 p-3";
 
-  // Remove existing toasts on mobile smoothly
+  // Remove os toasts existentes no dispositivo móvel suavemente
   const removeOldToasts = () => {
     return new Promise((resolve) => {
       if (window.innerWidth < 768) {
@@ -116,6 +131,7 @@ export const showToast = (title, message, type = "info", imageUrl = null) => {
 };
 
 // Função: hideAllToasts
+// Esconde todos os toasts atualmente exibidos e os remove da tela. Também limpa o temporizador de atualização do tempo dos toasts.
 export const hideAllToasts = () => {
   const container = document.getElementById("toastContainer");
   if (container) {

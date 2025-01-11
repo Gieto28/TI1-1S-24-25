@@ -1,3 +1,12 @@
+/*
+Este ficheiro: Estilos Responsivos para Sobreposição de Vídeo
+
+Descrição:
+Este ficheiro CSS contém definições de estilos responsivos para ajustar a aparência de elementos 
+na sobreposição de vídeo, garantindo uma boa experiência em dispositivos móveis e tamanhos de ecrã variados.
+*/
+
+/* Ajustes para ecrãs pequenos */
 @media (max-width: 576px) {
     #videoOverlay h5 {
         font-size: 1rem;
@@ -13,7 +22,7 @@
     }
 }
 
-/* Ajustes para telas médias */
+/* Ajustes para ecrãs médios */
 @media (max-width: 768px) {
     #videoOverlay h5 {
         font-size: 1.125rem;

@@ -1,6 +1,32 @@
-<section class="y-3 py-md-5"">
+<!-- 
+Este ficheiro: Secção de Marcação de Agendamentos - Página de Agendamento de Cortes
+
+Descrição:
+Este código define a secção de agendamento para os clientes da ChopChop Barbers & Shop. 
+Através de um calendário interativo, os clientes podem escolher um dia disponível para marcar uma sessão de barbearia, 
+preencher um formulário e submeter os detalhes para agendamento. 
+A secção inclui uma modal para adicionar ou editar agendamentos e uma legenda para explicar o significado das cores no calendário.
+
+Estrutura:
+1. Secção do Header:
+   - Apresenta um título e uma breve descrição convidando os clientes a marcar um agendamento.
+   - A descrição destaca a facilidade de escolher um dia e preencher um formulário simples.
+
+2. Secção do Calendário:
+   - Um calendário interativo que permite visualizar os dias disponíveis para agendamento.
+   - A navegação entre meses é feita através de botões para avançar e retroceder.
+   - A legenda do calendário explica as diferentes cores representando dias disponíveis, dias de agendamento do cliente, outros agendamentos de clientes e dias de folga.
+
+3. Secção da Modal:
+   - Uma janela modal que aparece quando o cliente escolhe um dia para agendar.
+   - Contém um formulário para preencher dados pessoais, como nome, número de telefone, e-mail e título/descrição do agendamento.
+   - A modal tem botões para salvar ou excluir o agendamento.
+
+-->
+
+<section class="y-3 py-md-5">
   <div class="container">
-    <!-- Header Section -->
+    <!-- Secção do Header -->
     <div class="row justify-content-center">
       <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6" data-aos="fade-down">
         <h2 class="mb-4 display-5 text-center fw-bold">
@@ -16,7 +42,7 @@
       </div>
     </div>
 
-    <!-- Calendar Section -->
+    <!-- Secção do Calendário -->
     <div class="container mb-5">
       <div class="calendar-navigation d-flex justify-content-between mb-5" data-aos="fade-right">
         <button id="prevMonth" type="button"></button>
@@ -47,7 +73,7 @@
       </div>
     </div>
 
-    <!-- Modal Section -->
+    <!-- Secção da Modal -->
     <div
       class="modal fade"
       id="addEventModal"

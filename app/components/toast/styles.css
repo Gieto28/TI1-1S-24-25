@@ -1,20 +1,42 @@
+/*
+Este ficheiro: Estilos para Toasts (Notificações)
+
+Descrição:
+Este bloco de código define os estilos e animações para o componente de "toast" (notificação). 
+Este especifica animações de entrada e saída, bordas arredondadas, sombreamento e estilos para os elementos do cabeçalho e corpo do toast, bem como a forma da imagem no corpo.
+
+Especificações:
+- A animação `fadeIn` e `fadeOut` são aplicadas para tornar o toast visível e, em seguida, ocultá-lo suavemente após um tempo.
+- O componente tem bordas arredondadas e uma sombra subtil para destacar o toast.
+- A imagem dentro do corpo do toast tem bordas arredondadas e uma borda de 2px com cor clara.
+- A classe `toast-container` garante que os toasts aparecem acima de outros elementos da página.
+*/
+
 .toast {
+    /* Animação de entrada e saída do toast */
     animation: fadeIn 0.5s ease, fadeOut 0.5s ease 7s forwards;
+
+    /* Borda arredondada para o toast */
     border-radius: 8px;
+
+    /* Sombra subtil para dar profundidade ao toast */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .toast-header {
+    /* Bordas arredondadas para o cabeçalho do toast */
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
 
 .toast-body img {
+    /* Imagem com bordas arredondadas e borda sutil */
     border-radius: 50%;
     border: 2px solid #ddd;
 }
 
 @keyframes fadeIn {
+    /* Animação para a entrada do toast: começa invisível e sobe */
     from {
         opacity: 0;
         transform: translateY(20px);
@@ -26,6 +48,7 @@
 }
 
 @keyframes fadeOut {
+    /* Animação para a saída do toast: o toast vai ficando invisível e sobe */
     to {
         opacity: 0;
         transform: translateY(-20px);
@@ -33,5 +56,6 @@
 }
 
 .toast-container {
-    z-index: 1055; /* Ensure it appears above other elements */
+    /* Z-index para garantir que o toast apareça acima de outros elementos */
+    z-index: 1055;
 }

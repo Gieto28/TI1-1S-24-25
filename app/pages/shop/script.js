@@ -32,14 +32,14 @@ const createCard = (product, addItemToCartCallback) => {
     "col-xl-3",
     "col-xxl-2",
     "mb-4",
-    "animate__animated", // Class for animations
-    "aos-init", // Necessary for AOS initialization
+    "animate__animated", // Classe para animações
+    "aos-init", // Necessário para a inicialização do AOS
     "aos-animate"
   );
 
   // Adiciona um atributo AOS ao cartão para que os produtos entrem com animação
   card.setAttribute("data-aos", "fade-up");
-  card.setAttribute("data-aos-delay", Math.floor(Math.random() * 200)); // Delay aleatório para efeito dinâmico
+  card.setAttribute("data-aos-delay", Math.floor(Math.random() * 200)); // Atraso aleatório para efeito dinâmico
 
   // Define a apresentação do conteúdo do cartão em HTML
   card.innerHTML = `
@@ -51,7 +51,7 @@ const createCard = (product, addItemToCartCallback) => {
       </div>
       <div class="card-footer p-0 mt-auto">
         <button class="btn btn-secondary w-100 rounded-top-0">
-          Add to cart <strong>${product.price} ${product.currency}</strong>
+          Adicionar ao carrinho <strong>${product.price} ${product.currency}</strong>
         </button>
       </div>
     </div>
@@ -61,15 +61,15 @@ const createCard = (product, addItemToCartCallback) => {
 
   // Adiciona um Event Listener ao botão que chama a função de adicionar item ao carrinho
   button.addEventListener("click", () => {
-    // Add a quick bounce effect to the card on button click
+    // Adiciona um efeito de "bounce" rápido ao card quando o botão é clicado
     card.classList.add("animate__bounce");
 
-    // Remove the bounce class after the animation ends to allow re-trigger
+    // Remove a classe de "bounce" depois que a animação termina para permitir re-ativação
     card.addEventListener("animationend", () => {
       card.classList.remove("animate__bounce");
     });
 
-    // Call the callback function
+    // Chama a função de callback
     addItemToCartCallback(product);
   });
 
@@ -80,31 +80,31 @@ const renderProducts = (products) => {
   const productsContainer = document.getElementById("shopProducts");
   const totalItemsCount = document.getElementById("totalItemsCount");
 
-  // Clear the container before adding new products
+  // Limpa o conteúdo antes de adicionar os novos produtos
   productsContainer.innerHTML = "";
 
-  // Create and add each product card with animation
+  // Cria e adiciona o card de cada produto com animação
   products.forEach((product) => {
     const card = createCard(product, addItemToCart);
     card.style.opacity = "0";
     card.style.transition = "opacity 0.5s ease-in-out";
     productsContainer.appendChild(card);
-    setTimeout(() => (card.style.opacity = "1"), 50); // Fade-in animation
+    setTimeout(() => (card.style.opacity = "1"), 50); // Animação de fade-in
   });
 
-  // Update total items count
-  totalItemsCount.textContent = `${products.length} of ${config.productList.length} products`;
+  // Atualiza a contagem total de itens
+  totalItemsCount.textContent = `${products.length} de ${config.productList.length} produtos`;
 };
 
 const renderPaginationButtons = (productList) => {
   const dropdownContainer = document.getElementById("shopProductsDropdown");
   const paginationContainer = document.getElementById("shopPagination");
 
-  // Clear the containers before adding new elements
+  // Limpa os containers antes de adicionar novos elementos
   dropdownContainer.innerHTML = "";
   paginationContainer.innerHTML = "";
 
-  // Items Per Page Dropdown
+  // Dropdown de Itens por Página
   const itemsPerPageDropdown = document.createElement("select");
   itemsPerPageDropdown.classList.add(
     "form-select",
@@ -116,26 +116,30 @@ const renderPaginationButtons = (productList) => {
   let currentPage = 0;
   let itemsPerPage = 5;
 
+  // Criação das opções de itens por página
   [5, 10, 15, 20].forEach((optionValue) => {
     const option = document.createElement("option");
     option.value = optionValue;
-    option.textContent = `${optionValue} items per page`;
+    option.textContent = `${optionValue} itens por página`;
     if (optionValue === itemsPerPage) option.selected = true;
     itemsPerPageDropdown.appendChild(option);
   });
 
+  // Alteração de itens por página
   itemsPerPageDropdown.addEventListener("change", () => {
     itemsPerPage = parseInt(itemsPerPageDropdown.value, 10);
-    currentPage = 0; // Reset to the first page
+    currentPage = 0; // Reseta para a primeira página
     renderCurrentPage();
     updatePagination();
   });
 
   dropdownContainer.appendChild(itemsPerPageDropdown);
 
+  // Calcula o total de páginas
   const calculateTotalPages = () =>
     Math.ceil(productList.length / itemsPerPage);
 
+  // Renderiza a página atual
   const renderCurrentPage = () => {
     const startIndex = currentPage * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
@@ -143,15 +147,16 @@ const renderPaginationButtons = (productList) => {
     renderProducts(itemsToRender);
   };
 
+  // Atualiza a navegação de paginação
   const updatePagination = () => {
     paginationContainer.innerHTML = "";
 
     const totalPages = calculateTotalPages();
 
-    // Previous Button
+    // Botão de Anterior
     const leftButton = document.createElement("button");
     leftButton.classList.add("btn", "btn-secondary", "btn-sm");
-    leftButton.textContent = "← Previous";
+    leftButton.textContent = "← Anterior";
     leftButton.disabled = currentPage === 0;
     leftButton.addEventListener("click", () => {
       if (currentPage > 0) {
@@ -161,7 +166,7 @@ const renderPaginationButtons = (productList) => {
       }
     });
 
-    // Page Indicator
+    // Indicador da Página
     const pageIndicator = document.createElement("span");
     pageIndicator.classList.add(
       "page-indicator",
@@ -169,12 +174,12 @@ const renderPaginationButtons = (productList) => {
       "mx-3",
       "fw-bold"
     );
-    pageIndicator.textContent = `Page ${currentPage + 1} of ${totalPages}`;
+    pageIndicator.textContent = `Página ${currentPage + 1} de ${totalPages}`;
 
-    // Next Button
+    // Botão de Próximo
     const rightButton = document.createElement("button");
     rightButton.classList.add("btn", "btn-secondary", "btn-sm");
-    rightButton.textContent = "Next →";
+    rightButton.textContent = "Próximo →";
     rightButton.disabled = currentPage === totalPages - 1;
     rightButton.addEventListener("click", () => {
       if (currentPage < totalPages - 1) {
@@ -184,13 +189,13 @@ const renderPaginationButtons = (productList) => {
       }
     });
 
-    // Add elements to pagination container
+    // Adiciona os elementos ao container de paginação
     paginationContainer.appendChild(leftButton);
     paginationContainer.appendChild(pageIndicator);
     paginationContainer.appendChild(rightButton);
   };
 
-  // Initial Render
+  // Renderização inicial
   renderCurrentPage();
   updatePagination();
 };
@@ -223,6 +228,6 @@ const renderCarousel = () => {
       wrap: true, // Faz o loop
     });
 
-    bootstrapCarousel.cycle(); // Inicia o car
+    bootstrapCarousel.cycle(); // Inicia o carrossel
   }
 };

@@ -1,27 +1,30 @@
-/**
- * Este arquivo é responsável por enviar notificações de email relacionadas a agendamentos.
- * - Envia um email quando um novo agendamento é criado ou deletado.
- * - Utiliza o EmailJS para facilitar o envio de emails.
- * - Aceita dois tipos de emails: "new" (novo agendamento) e "delete" (agendamento deletado).
- * - Exibe notificações visuais de sucesso ou erro utilizando a função `showToast`.
- */
+/*
+Este ficheiro: Envio notificações de email relacionadas com agendamentos
 
-import { showToast } from "../components/toast/script.js";
+Descrição:
+Envia um email quando um novo agendamento é criado ou apagado.
+Utiliza o EmailJS para facilitar o envio de emails.
+Aceita dois tipos de emails: "new" (novo agendamento) e "delete" (apagar agendamento).
+Exibe notificações visuais de sucesso ou erro utilizando a função `showToast`.
+*/
+
 // Importa a função showToast para exibir notificações visuais de sucesso ou erro.
+import { showToast } from "../components/toast/script.js";
 
+// Função principal para enviar emails de notificações relacionadas com agendamentos.
 export const sendAppointmentEmail = (type, appointment) => {
   // Determina o ID do template com base no tipo de email ("new" ou "delete").
   const templateID =
     type === "new"
       ? "template_x4u500o" // ID do template para novos agendamentos.
       : type === "delete"
-      ? "template_wb59v73" // ID do template para agendamentos deletados.
+      ? "template_wb59v73" // ID do template para agendamentos eliminados.
       : null;
 
+  // Verifica se o tipo de email é válido.
   if (!templateID) {
-    // Verifica se o tipo de email é válido.
+    // Mostra um erro na consola caso o tipo de email seja inválido.
     console.error("Invalid email type provided.");
-    // Mostra um erro no console caso o tipo de email seja inválido.
     return;
   }
 
@@ -39,19 +42,19 @@ export const sendAppointmentEmail = (type, appointment) => {
 
   // Envia o email utilizando o EmailJS com os parâmetros especificados.
   emailjs.send("service_kkh8ne9", templateID, templateParams).then(
+    // Se o envio do email for bem-sucedido, mostra uma mensagem de sucesso.
     (response) => {
-      // Se o envio do email for bem-sucedido, mostra uma mensagem de sucesso.
-      console.info("Email sent successfully:", response.status, response.text);
       // Exibe no console o status e a resposta do envio.
+      console.info("Email sent successfully:", response.status, response.text);
+      // Mostra uma notificação de sucesso ao utilizador.
       showToast("Success", "Notification email sent.", "success");
-      // Mostra uma notificação de sucesso para o usuário.
     },
+    // Se o envio do email falhar, mostra uma mensagem de erro.
     (error) => {
-      // Se o envio do email falhar, mostra uma mensagem de erro.
-      console.error("Failed to send email:", error);
       // Exibe no console detalhes sobre o erro.
+      console.error("Failed to send email:", error);
+      // Mostra uma notificação de erro ao utilizador.
       showToast("Error", "Failed to send notification email.", "failure");
-      // Mostra uma notificação de erro para o usuário.
     }
   );
 };

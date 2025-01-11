@@ -1,10 +1,23 @@
+/*
+Este ficheiro: Estilos para Links de Navegação
+
+Descrição:
+Este bloco de código define os estilos para os links de navegação da página, tanto para o estado ativo quanto para o estado de hover. 
+Os links ativos são destacados com uma cor cinza escuro, sublinhado e em negrito. 
+O mesmo estilo é aplicado aos links quando o rato passa sobre eles.
+
+Especificações:
+- A classe `.nav-link.active` aplica uma cor cinza escuro, sublinha e coloca o texto em negrito quando o link está ativo.
+- A classe `.nav-link:hover` aplica os mesmos estilos quando o utilizador passa o rato sobre o link, criando uma interação visual consistente.
+*/
+
 .nav-link.active {
     color: #343a40 !important; /* Cor cinza escuro para o link ativo, um tom elegante e sóbrio */
     text-decoration: underline; /* Sublinha o link ativo */
     font-weight: bold; /* Deixa o link ativo em negrito */
   }
   
-  /* Estilo para os links ao passar o mouse */
+  /* Estilo para os links ao passar o rato */
   .nav-link:hover {
     color: #343a40 !important; /* Cor cinza escuro para o link ativo, um tom elegante e sóbrio */
     text-decoration: underline; /* Sublinha o link ativo */

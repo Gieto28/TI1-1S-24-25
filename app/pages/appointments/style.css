@@ -1,12 +1,12 @@
 /**
- * Este arquivo CSS é responsável por estilizar o calendário de agendamentos da aplicação.
- * 
- * Funcionalidades principais:
- * 1. Estilização para dias válidos, inválidos, agendados e dias de folga.
- * 2. Efeitos visuais como transformações e sombras ao passar o mouse.
- * 3. Estilização de tooltips para exibição de informações detalhadas.
- * 4. Suporte responsivo, ajustando botões e layouts para dispositivos móveis.
- * 5. Legenda visual para indicar o significado de cores no calendário.
+Este ficheiro: Estiliza o calendário de agendamentos da aplicação.
+
+Descrição:
+1. Estilização para dias válidos, inválidos, agendados e dias de folga.
+2. Efeitos visuais como transformações e sombras ao passar o rato por cima.
+3. Estilização de tooltips para exibição de informações detalhadas.
+4. Suporte responsivo, ajustando botões e layouts para dispositivos móveis.
+5. Legenda visual para indicar o significado das cores no calendário.
  */
 
 /* Estilo básico para dias válidos e interativos */
@@ -23,7 +23,7 @@
   z-index: 1; /* Mantém a hierarquia de elementos */
 }
 
-/* Efeito de destaque ao passar o mouse ou focar */
+/* Efeito de destaque ao passar o rato ou focar */
 .valid-day:hover,
 .valid-day:focus {
   transform: scale(1.1); /* Aumenta ligeiramente o tamanho */
@@ -42,10 +42,10 @@
   top: 0;
   left: 0;
   z-index: 1; /* Mantém o logo acima do dia */
-  transition: transform 0.2s ease-in-out; /* Animação suave ao passar o mouse */
+  transition: transform 0.2s ease-in-out; /* Animação suave ao passar o rato */
 }
 
-/* Efeito ao passar o mouse sobre o logo */
+/* Efeito ao passar o rato sobre o logo */
 .logo-on-day:hover {
   transform: scale(1.1); /* Aumenta ligeiramente o logo */
 }
@@ -65,9 +65,9 @@
   border: 1px solid #f9e79f; /* Borda amarelo claro */
 }
 
-/* Estilo para dias com agendamentos do usuário */
+/* Estilo para dias com agendamentos do utilizador */
 .bg-user {
-  background-color: #d5f5e3; /* Verde pastel para agendamentos do usuário */
+  background-color: #d5f5e3; /* Verde pastel para agendamentos do utilizador */
   position: relative; /* Posicionamento interno */
   color: transparent; /* Esconde o texto do dia */
   border: 1px solid #a9dfbf; /* Borda verde claro */
@@ -87,7 +87,7 @@
   transition: background-color 0.2s ease-in-out; /* Transição suave ao interagir */
 }
 
-/* Efeito ao passar o mouse sobre o contêiner de paginação */
+/* Efeito ao passar o rato sobre o contêiner de paginação */
 .pagination-container:hover {
   background-color: #e9ecef; /* Fundo ligeiramente mais escuro */
 }
@@ -97,7 +97,7 @@
   font-size: 0.9rem; /* Tamanho pequeno para texto */
   max-width: 200px; /* Largura máxima */
   word-wrap: break-word; /* Quebra palavras longas */
-  pointer-events: none; /* Desativa interações do mouse */
+  pointer-events: none; /* Desativa interações do rato */
   transition: opacity 0.2s ease-in-out; /* Transição suave de opacidade */
 }
 
@@ -144,7 +144,7 @@
 }
 
 .color-box.bg-user {
-  background-color: #d5f5e3; /* Indica agendamentos do usuário */
+  background-color: #d5f5e3; /* Indica agendamentos do utilizador */
 }
 
 .color-box.bg-schedule {
