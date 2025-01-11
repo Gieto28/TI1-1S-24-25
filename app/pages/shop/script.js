@@ -32,21 +32,29 @@ const createCard = (product, addItemToCartCallback) => {
     "col-xl-3",
     "col-xxl-2",
     "mb-4",
-    "animate__animated" // Class for animations
+    "animate__animated", // Class for animations
+    "aos-init", // Necessary for AOS initialization
+    "aos-animate"
   );
 
-  // Define a apresentação do conteúdo do cartão em html, com imagem, nome, descrição, preço e botão de adicionar item ao carrinho
+  // Adiciona um atributo AOS ao cartão para que os produtos entrem com animação
+  card.setAttribute("data-aos", "fade-up");
+  card.setAttribute("data-aos-delay", Math.floor(Math.random() * 200)); // Delay aleatório para efeito dinâmico
+
+  // Define a apresentação do conteúdo do cartão em HTML
   card.innerHTML = `
-      <div class="card h-100 d-flex flex-column">
-        <img src="${product.image}" alt="${product.name}" class="card-img-top">
-        <div class="card-body flex-grow-1">
-          <h5 class="card-title">${product.name}</h5>
-          <p class="card-text">${product.description}</p>
-          </div>
-          <div class="card-footer p-0 mt-auto">
-          <button class="btn btn-secondary w-100 rounded-top-0">Add to cart <strong>${product.price} ${product.currency}</strong> </button>
-        </div>
+    <div class="card h-100 d-flex flex-column">
+      <img src="${product.image}" alt="${product.name}" class="card-img-top">
+      <div class="card-body flex-grow-1">
+        <h5 class="card-title">${product.name}</h5>
+        <p class="card-text">${product.description}</p>
       </div>
+      <div class="card-footer p-0 mt-auto">
+        <button class="btn btn-secondary w-100 rounded-top-0">
+          Add to cart <strong>${product.price} ${product.currency}</strong>
+        </button>
+      </div>
+    </div>
   `;
 
   const button = card.querySelector("button");

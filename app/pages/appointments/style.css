@@ -154,3 +154,19 @@
 .color-box.off-day {
   background-color: #c5c5c5; /* Indica dias de folga */
 }
+
+/* Animation for closing the modal */
+.modal.fade-out {
+  animation: modalFadeOut 0.4s ease forwards; /* 0.4s fade-out effect */
+}
+
+@keyframes modalFadeOut {
+  from {
+    opacity: 1; /* Start fully visible */
+    transform: translateY(0); /* No vertical shift */
+  }
+  to {
+    opacity: 0; /* Fade to invisible */
+    transform: translateY(20px); /* Slight downward movement */
+  }
+}

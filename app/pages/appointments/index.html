@@ -1,7 +1,8 @@
-<section class="y-3 py-md-5">
+<section class="y-3 py-md-5"">
   <div class="container">
+    <!-- Header Section -->
     <div class="row justify-content-center">
-      <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+      <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6" data-aos="fade-down">
         <h2 class="mb-4 display-5 text-center fw-bold">
           Book Your Appointment
         </h2>
@@ -14,29 +15,31 @@
         <hr class="w-50 mx-auto mt-5 mb-5 mb-xl-9 border-dark-subtle" />
       </div>
     </div>
+
+    <!-- Calendar Section -->
     <div class="container mb-5">
-      <div class="calendar-navigation d-flex justify-content-between mb-5">
+      <div class="calendar-navigation d-flex justify-content-between mb-5" data-aos="fade-right">
         <button id="prevMonth" type="button"></button>
         <span id="currentMonth" class="text-center fw-bold"></span>
         <button id="nextMonth" type="button"></button>
       </div>
-      <div id="calendarGrid" class="mb-5"></div>
-      <div class="calendar-guide mt-4">
+      <div id="calendarGrid" class="mb-5" data-aos="fade-up" data-aos-delay="100"></div>
+      <div class="calendar-guide mt-4" data-aos="fade-left" data-aos-delay="200">
         <h5 class="fw-bold">Calendar Legend</h5>
         <div class="row">
-          <div class="col-12 col-md-6 d-flex align-items-center mb-2">
+          <div class="col-12 col-md-6 d-flex align-items-center mb-2" data-aos="fade-up" data-aos-delay="300">
             <div class="color-box valid-day me-2"></div>
             <span>Available Day</span>
           </div>
-          <div class="col-12 col-md-6 d-flex align-items-center mb-2">
+          <div class="col-12 col-md-6 d-flex align-items-center mb-2" data-aos="fade-up" data-aos-delay="400">
             <div class="color-box bg-user me-2"></div>
             <span>Your Appointment</span>
           </div>
-          <div class="col-12 col-md-6 d-flex align-items-center mb-2">
+          <div class="col-12 col-md-6 d-flex align-items-center mb-2" data-aos="fade-up" data-aos-delay="500">
             <div class="color-box bg-schedule me-2"></div>
             <span>Other Clients Appointment</span>
           </div>
-          <div class="col-12 col-md-6 d-flex align-items-center mb-2">
+          <div class="col-12 col-md-6 d-flex align-items-center mb-2" data-aos="fade-up" data-aos-delay="600">
             <div class="color-box off-day me-2"></div>
             <span>Off Day</span>
           </div>
@@ -44,6 +47,7 @@
       </div>
     </div>
 
+    <!-- Modal Section -->
     <div
       class="modal fade"
       id="addEventModal"
@@ -64,7 +68,7 @@
           </div>
           <div class="modal-body">
             <form id="addEventForm">
-              <div class="mb-4">
+              <div class="mb-4" dat100">
                 <label for="userName" class="form-label fw-bold"
                   >Name <span class="text-danger">*</span></label
                 >
@@ -136,8 +140,7 @@
                 ></textarea>
               </div>
               <div
-                class="button-container d-flex flex-wrap justify-content-between"
-              >
+                class="button-container d-flex flex-wrap justify-content-between">
                 <button
                   type="submit"
                   id="eventModalButton"

@@ -19,6 +19,14 @@ window.loadPage = (pageName) => {
   loadPage(pageName); // Chama a função para carregar uma página específica com base no nome da página
 };
 
+document.addEventListener("DOMContentLoaded", () => {
+  AOS.init({
+    duration: 800, // Duração da animação em milissegundos
+    easing: "ease-in-out", // Tipo de transição
+    once: true, // Executa a animação apenas uma vez
+  });
+});
+
 // Expressão de Função Invocada Imediatamente (IIFE) para carregar componentes padrão (header e footer) e a página
 (async () => {
   // Inicializa o serviço de EmailJS com a chave de API especificada

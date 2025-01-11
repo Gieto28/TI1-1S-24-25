@@ -38,6 +38,11 @@ export const loadPage = async (pageName) => {
   await loadComponent("body", pageUrl);
 
   await loadPageContent[pageName]?.(pageName);
+
+  window.scrollTo({
+    top: 0, // Define a posição vertical como o topo
+    behavior: "smooth", // Adiciona uma transição suave
+  });
 };
 
 // Objeto com funções para carregar conteúdos adicionais de páginas
