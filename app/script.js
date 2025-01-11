@@ -21,6 +21,9 @@ window.loadPage = (pageName) => {
 
 // Expressão de Função Invocada Imediatamente (IIFE) para carregar componentes padrão (header e footer) e a página
 (async () => {
+  // Inicializa o serviço de EmailJS com a chave de API especificada
+  emailjs.init("sTT65t2NQGiGE5-IK");
+
   // Carrega o componente do header a partir do caminho especificado
   await loadComponent("header", "/app/components/header/index.html");
 

@@ -1,25 +1,156 @@
-button.clickable {
-    background-color: white;
+/**
+ * Este arquivo CSS é responsável por estilizar o calendário de agendamentos da aplicação.
+ * 
+ * Funcionalidades principais:
+ * 1. Estilização para dias válidos, inválidos, agendados e dias de folga.
+ * 2. Efeitos visuais como transformações e sombras ao passar o mouse.
+ * 3. Estilização de tooltips para exibição de informações detalhadas.
+ * 4. Suporte responsivo, ajustando botões e layouts para dispositivos móveis.
+ * 5. Legenda visual para indicar o significado de cores no calendário.
+ */
+
+/* Estilo básico para dias válidos e interativos */
+.valid-day.clickable {
+  background-color: white; /* Fundo branco para dias disponíveis */
+  border: 1px solid #dcdcdc; /* Borda cinza clara */
+  transition: background-color 0.2s ease-in-out; /* Transição suave ao interagir */
 }
 
-.valid-day:hover {
-    background-image: url('../../assets/logos/banner-light-mode.png');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    color: transparent;
+/* Estilo para dias válidos */
+.valid-day {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; /* Animações suaves */
+  border: 1px solid transparent; /* Borda inicial invisível */
+  z-index: 1; /* Mantém a hierarquia de elementos */
 }
 
+/* Efeito de destaque ao passar o mouse ou focar */
+.valid-day:hover,
+.valid-day:focus {
+  transform: scale(1.1); /* Aumenta ligeiramente o tamanho */
+  border-color: #76c7a8; /* Cor da borda em verde claro */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra suave para destaque */
+  z-index: 10; /* Garante que o elemento esteja no topo */
+  background-color: #e6ffe8; /* Fundo verde pastel */
+}
 
-/* Pagination Container */
+/* Estilo para o logo exibido em dias com agendamentos */
+.logo-on-day {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Garante que a imagem se ajuste ao espaço */
+  position: absolute; /* Permite posicionamento sobre o dia */
+  top: 0;
+  left: 0;
+  z-index: 1; /* Mantém o logo acima do dia */
+  transition: transform 0.2s ease-in-out; /* Animação suave ao passar o mouse */
+}
+
+/* Efeito ao passar o mouse sobre o logo */
+.logo-on-day:hover {
+  transform: scale(1.1); /* Aumenta ligeiramente o logo */
+}
+
+/* Estilo para dias de folga */
+.off-day {
+  background-color: #c5c5c5; /* Cinza pastel para indicar indisponibilidade */
+  position: relative; /* Necessário para posicionamento interno */
+  border: 1px solid #dcdcdc; /* Borda cinza clara */
+}
+
+/* Estilo para dias com agendamentos */
+.bg-schedule {
+  background-color: #fcf3cf; /* Amarelo pastel para agendamentos existentes */
+  position: relative; /* Posicionamento interno */
+  color: transparent; /* Esconde o texto do dia */
+  border: 1px solid #f9e79f; /* Borda amarelo claro */
+}
+
+/* Estilo para dias com agendamentos do usuário */
+.bg-user {
+  background-color: #d5f5e3; /* Verde pastel para agendamentos do usuário */
+  position: relative; /* Posicionamento interno */
+  color: transparent; /* Esconde o texto do dia */
+  border: 1px solid #a9dfbf; /* Borda verde claro */
+}
+
+/* Estilo para o contêiner de paginação */
 .pagination-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    padding: 1rem;
+  display: flex; /* Exibe os botões de navegação lado a lado */
+  justify-content: center; /* Centraliza os botões */
+  align-items: center; /* Alinha verticalmente os botões */
+  flex-wrap: wrap; /* Permite quebra de linha se necessário */
+  gap: 1rem; /* Espaçamento entre botões */
+  background-color: #f8f9fa; /* Fundo cinza claro */
+  border-radius: 8px; /* Cantos arredondados */
+  padding: 1rem; /* Espaçamento interno */
+  border: 1px solid #dcdcdc; /* Borda cinza */
+  transition: background-color 0.2s ease-in-out; /* Transição suave ao interagir */
+}
+
+/* Efeito ao passar o mouse sobre o contêiner de paginação */
+.pagination-container:hover {
+  background-color: #e9ecef; /* Fundo ligeiramente mais escuro */
+}
+
+/* Estilo para tooltips (dicas de ferramenta) */
+.hover-tooltip {
+  font-size: 0.9rem; /* Tamanho pequeno para texto */
+  max-width: 200px; /* Largura máxima */
+  word-wrap: break-word; /* Quebra palavras longas */
+  pointer-events: none; /* Desativa interações do mouse */
+  transition: opacity 0.2s ease-in-out; /* Transição suave de opacidade */
+}
+
+/* Estilo padrão para botões em desktop */
+.button-container {
+  gap: 1rem; /* Espaçamento entre botões */
+}
+
+.button-container .btn {
+  flex: 1; /* Botões ocupam tamanhos iguais */
+  margin: 0.5rem; /* Margem ao redor dos botões */
+}
+
+/* Estilo para dispositivos móveis: pilha os botões verticalmente */
+@media (max-width: 768px) {
+  .button-container {
+    flex-direction: column; /* Alinha botões verticalmente */
+    align-items: stretch; /* Botões ocupam toda a largura */
   }
-  
+
+  .button-container .btn {
+    width: 100%; /* Garante largura total em dispositivos pequenos */
+  }
+}
+
+/* Estilo para o guia visual do calendário */
+.calendar-guide {
+  background-color: #f8f9fa; /* Fundo cinza claro */
+  padding: 1rem; /* Espaçamento interno */
+  border-radius: 8px; /* Cantos arredondados */
+  border: 1px solid #dcdcdc; /* Borda cinza clara */
+}
+
+/* Estilo para caixas de legenda no guia */
+.color-box {
+  width: 20px; /* Largura da caixa */
+  height: 20px; /* Altura da caixa */
+  border-radius: 4px; /* Cantos arredondados */
+  border: 1px solid #dcdcdc; /* Borda cinza clara */
+}
+
+.color-box.valid-day {
+  background-color: white; /* Indica dias válidos */
+}
+
+.color-box.bg-user {
+  background-color: #d5f5e3; /* Indica agendamentos do usuário */
+}
+
+.color-box.bg-schedule {
+  background-color: #fcf3cf; /* Indica agendamentos existentes */
+}
+
+.color-box.off-day {
+  background-color: #c5c5c5; /* Indica dias de folga */
+}
