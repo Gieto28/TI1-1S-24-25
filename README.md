@@ -190,3 +190,14 @@ The project attempts to mimic a **Single Page Application (SPA)** behavior using
 - **Canva:** [Design link](https://www.canva.com/design/DAGYoE9i2pw/oNgbH23DMkGzBxKv_xYIuA/edit)  
 
 Let me know if you'd like to refine any specific section further!
+
+EmailJS:
+https://dashboard.emailjs.com/admin
+productions.m.a.works@gmail.com
+Password: you wish
+
+Gmail
+productions.m.a.works@gmail.com
+Password: you wish
+
+

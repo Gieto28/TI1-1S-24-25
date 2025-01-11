@@ -1,0 +1,166 @@
+<section class="y-3 py-md-5"">
+  <div class="container">
+    <!-- Header Section -->
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6" data-aos="fade-down">
+        <h2 class="mb-4 display-5 text-center fw-bold">
+          Book Your Appointment
+        </h2>
+        <p class="lead text-muted">
+          We're excited to give you the perfect Chop! Choose a day and fill out
+          the form to schedule your appointment with one of our talented
+          barbers. We'll confirm your booking as soon as possible and get you
+          looking sharp!
+        </p>
+        <hr class="w-50 mx-auto mt-5 mb-5 mb-xl-9 border-dark-subtle" />
+      </div>
+    </div>
+
+    <!-- Calendar Section -->
+    <div class="container mb-5">
+      <div class="calendar-navigation d-flex justify-content-between mb-5" data-aos="fade-right">
+        <button id="prevMonth" type="button"></button>
+        <span id="currentMonth" class="text-center fw-bold"></span>
+        <button id="nextMonth" type="button"></button>
+      </div>
+      <div id="calendarGrid" class="mb-5" data-aos="fade-up" data-aos-delay="100"></div>
+      <div class="calendar-guide mt-4" data-aos="fade-left" data-aos-delay="200">
+        <h5 class="fw-bold">Calendar Legend</h5>
+        <div class="row">
+          <div class="col-12 col-md-6 d-flex align-items-center mb-2" data-aos="fade-up" data-aos-delay="300">
+            <div class="color-box valid-day me-2"></div>
+            <span>Available Day</span>
+          </div>
+          <div class="col-12 col-md-6 d-flex align-items-center mb-2" data-aos="fade-up" data-aos-delay="400">
+            <div class="color-box bg-user me-2"></div>
+            <span>Your Appointment</span>
+          </div>
+          <div class="col-12 col-md-6 d-flex align-items-center mb-2" data-aos="fade-up" data-aos-delay="500">
+            <div class="color-box bg-schedule me-2"></div>
+            <span>Other Clients Appointment</span>
+          </div>
+          <div class="col-12 col-md-6 d-flex align-items-center mb-2" data-aos="fade-up" data-aos-delay="600">
+            <div class="color-box off-day me-2"></div>
+            <span>Off Day</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Section -->
+    <div
+      class="modal fade"
+      id="addEventModal"
+      tabindex="-1"
+      aria-labelledby="addEventModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content rounded-3 shadow">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addEventModalLabel"></h5>
+            <button
+              type="button"
+              class="btn-close btn-danger"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="addEventForm">
+              <div class="mb-4" dat100">
+                <label for="userName" class="form-label fw-bold"
+                  >Name <span class="text-danger">*</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="userName"
+                  placeholder="Enter your name"
+                  required
+                />
+              </div>
+              <div class="mb-4">
+                <label for="userPhone" class="form-label fw-bold"
+                  >Phone Number <span class="text-danger">*</span></label
+                >
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="userPhone"
+                  placeholder="Enter your phone number"
+                  required
+                />
+              </div>
+              <div class="mb-4">
+                <label for="userEmail" class="form-label fw-bold"
+                  >Your Email <span class="text-danger">*</span></label
+                >
+                <input
+                  type="email"
+                  class="form-control"
+                  id="userEmail"
+                  placeholder="Enter your email"
+                  required
+                />
+              </div>
+              <div class="mb-4">
+                <label for="eventDate" class="form-label fw-bold"
+                  >Date <span class="text-danger">*</span></label
+                >
+                <input
+                  type="date"
+                  class="form-control"
+                  id="eventDate"
+                  required
+                />
+              </div>
+              <div class="mb-4">
+                <label for="eventTitle" class="form-label fw-bold"
+                  >Event Title <span class="text-danger">*</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="eventTitle"
+                  placeholder="Enter event title"
+                  required
+                />
+              </div>
+              <div class="mb-4">
+                <label for="eventDescription" class="form-label fw-bold"
+                  >Chop Description <span class="text-danger">*</span></label
+                >
+                <textarea
+                  class="form-control"
+                  id="eventDescription"
+                  rows="4"
+                  placeholder="Describe the chop"
+                  required
+                ></textarea>
+              </div>
+              <div
+                class="button-container d-flex flex-wrap justify-content-between">
+                <button
+                  type="submit"
+                  id="eventModalButton"
+                  class="btn btn-primary"
+                >
+                  Save Appointment
+                </button>
+                <button
+                  type="button"
+                  id="deleteEventButton"
+                  class="btn btn-danger"
+                  style="display: none"
+                >
+                  Delete
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

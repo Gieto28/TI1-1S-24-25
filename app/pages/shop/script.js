@@ -31,27 +31,47 @@ const createCard = (product, addItemToCartCallback) => {
     "col-md-4",
     "col-xl-3",
     "col-xxl-2",
-    "mb-4"
+    "mb-4",
+    "animate__animated", // Class for animations
+    "aos-init", // Necessary for AOS initialization
+    "aos-animate"
   );
 
-  // Define a apresentação do conteúdo do cartão em html, com imagem, nome, descrição, preço e botão de adicionar item ao carrinho
+  // Adiciona um atributo AOS ao cartão para que os produtos entrem com animação
+  card.setAttribute("data-aos", "fade-up");
+  card.setAttribute("data-aos-delay", Math.floor(Math.random() * 200)); // Delay aleatório para efeito dinâmico
+
+  // Define a apresentação do conteúdo do cartão em HTML
   card.innerHTML = `
-      <div class="card h-100 d-flex flex-column">
-        <img src="${product.image}" alt="${product.name}" class="card-img-top">
-        <div class="card-body flex-grow-1">
-          <h5 class="card-title">${product.name}</h5>
-          <p class="card-text">${product.description}</p>
-          </div>
-          <div class="card-footer p-0 mt-auto">
-          <button class="btn btn-secondary w-100 rounded-top-0">Add to cart <strong>${product.price} ${product.currency}</strong> </button>
-        </div>
+    <div class="card h-100 d-flex flex-column">
+      <img src="${product.image}" alt="${product.name}" class="card-img-top">
+      <div class="card-body flex-grow-1">
+        <h5 class="card-title">${product.name}</h5>
+        <p class="card-text">${product.description}</p>
       </div>
+      <div class="card-footer p-0 mt-auto">
+        <button class="btn btn-secondary w-100 rounded-top-0">
+          Add to cart <strong>${product.price} ${product.currency}</strong>
+        </button>
+      </div>
+    </div>
   `;
 
   const button = card.querySelector("button");
 
   // Adiciona um Event Listener ao botão que chama a função de adicionar item ao carrinho
-  button.addEventListener("click", () => addItemToCartCallback(product));
+  button.addEventListener("click", () => {
+    // Add a quick bounce effect to the card on button click
+    card.classList.add("animate__bounce");
+
+    // Remove the bounce class after the animation ends to allow re-trigger
+    card.addEventListener("animationend", () => {
+      card.classList.remove("animate__bounce");
+    });
+
+    // Call the callback function
+    addItemToCartCallback(product);
+  });
 
   return card; // Retorna o card do produto
 };
@@ -194,4 +214,15 @@ const renderCarousel = () => {
 
   // Adiciona o carrossel criado ao conteúdo do banner da loja
   shopBanner.innerHTML = shopCarousel;
+
+  const carouselElement = document.getElementById(carouselId);
+
+  if (carouselElement) {
+    const bootstrapCarousel = new bootstrap.Carousel(carouselElement, {
+      interval: 2000, // Intervalo de 2 segundos
+      wrap: true, // Faz o loop
+    });
+
+    bootstrapCarousel.cycle(); // Inicia o car
+  }
 };

@@ -55,3 +55,17 @@
     width: 100%; /* Full-width dropdown on small screens */
   }
 }
+
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.animate__bounce {
+  animation: bounce 0.5s ease-out;
+}

@@ -12,14 +12,26 @@ import { loadComponent, loadPage } from "../app/utils/components.js";
 import { intializeFeatureFlags } from "../app/utils/config.js";
 import { storageHandler } from "../app/utils/storage.js";
 import { loadHeaderContent } from "./components/header/script.js";
+import { showCookieModal } from "./components/cookies/script.js";
 
 // Função global para carregar dinamicamente uma página
 window.loadPage = (pageName) => {
   loadPage(pageName); // Chama a função para carregar uma página específica com base no nome da página
 };
 
+document.addEventListener("DOMContentLoaded", () => {
+  AOS.init({
+    duration: 800, // Duração da animação em milissegundos
+    easing: "ease-in-out", // Tipo de transição
+    once: true, // Executa a animação apenas uma vez
+  });
+});
+
 // Expressão de Função Invocada Imediatamente (IIFE) para carregar componentes padrão (header e footer) e a página
 (async () => {
+  // Inicializa o serviço de EmailJS com a chave de API especificada
+  emailjs.init("sTT65t2NQGiGE5-IK");
+
   // Carrega o componente do header a partir do caminho especificado
   await loadComponent("header", "/app/components/header/index.html");
 
@@ -41,4 +53,6 @@ window.loadPage = (pageName) => {
 
   // Inicializa os sinalizadores de funcionalidades com base nas definições armazenadas ou padrões
   intializeFeatureFlags();
+
+  showCookieModal();
 })();

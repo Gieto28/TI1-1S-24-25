@@ -13,65 +13,93 @@ e horário de funcionamento. A secção é responsiva, adaptando-se a diferentes
 -->
 
 <!-- Secção de contacto com fundo claro, para interagir com a barbearia -->
-<section class="bg-light py-3 py-md-5">
+<!-- Secção de contacto -->
+<section class="bg-light py-3 py-md-5" data-aos="fade-up">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
-                <h2 class="mb-4 display-5 text-center fw-bold">Contact Us</h2>
-                <p class="lead text-muted">We'd love to hear from you! Fill out the form below to ask about our services, or simply get in touch. We’ll get back to you as soon as possible.</p>
-                <hr class="w-50 mx-auto mt-5 mb-5 mb-xl-9 border-dark-subtle">
-            </div>
+      <!-- Header Section -->
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6" data-aos="fade-down">
+          <h2 class="mb-4 display-5 text-center fw-bold">Contact Us</h2>
+          <p class="lead text-muted">
+            We'd love to hear from you! Fill out the form below to ask about our services, or simply get in touch. We’ll get back to you as soon as possible.
+          </p>
+          <hr class="w-50 mx-auto mt-5 mb-5 mb-xl-9 border-dark-subtle" />
         </div>
-
-        <div class="row justify-content-center">
-            <div class="col-12">
-                <div class="bg-white border rounded mb-3 shadow-sm overflow-hidden p-4">
-                    <div class="row">
-                        <!-- Formulário de contacto -->
-                        <div class="col-12 col-md-6 mb-4 mb-md-0">
-                            <form id="contactForm" action="#!">
-                                <div class="mb-3">
-                                    <label for="fullname" class="form-label">Full Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="fullname" name="fullname" required>
-                                    <div id="fullnameError" class="text-danger"></div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control" id="email" name="email" required>
-                                    <div id="emailError" class="text-danger"></div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="message" class="form-label">Message <span class="text-danger">*</span></label>
-                                    <textarea rows="10" minlength="15" maxlength="500" class="form-control" id="message" name="message" rows="3" required></textarea>
-                                    <div id="messageError" class="text-danger"></div>
-                                </div>
-                                <div class="d-grid">
-                                    <button class="btn btn-outline-secondary btn-lg transition-all" type="submit">Submit</button>
-                                </div>
-                            </form>
-                        </div>
-
-                        <!-- Secção do mapa -->
-                        <div class="col-12 col-md-6">
-                            <aside class="embed-responsive embed-responsive-16by9">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3690.0150882797034!2d-9.162586023659623!3d38.768472554300246!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1932edd62bb521%3A0x1ee0de4e32108704!2sISTEC%20-%20Instituto%20Superior%20de%20Tecnologias%20Avan%C3%A7adas!5e1!3m2!1spt-PT!2spt!4v1736072430398!5m2!1spt-PT!2spt" width="100%" height="300" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            </aside>
-                            <div class="mt-3 text-center">
-                                <address class="text-muted mb-4">
-                                    <strong>ChopChop Barbers</strong><br>
-                                    Alameda das Linhas de Torres 179,<br>
-                                    1750-142 Lisbon<br>
-                                </address>
-                                <p class="mb-2"><strong>Operating Hours:</strong></p>
-                                <ul class="list-unstyled text-muted">
-                                    <li><i class="bi bi-clock me-2"></i>Mon-Sat: 9 AM - 7 PM</li>
-                                    <li><i class="bi bi-clock me-2"></i>Sun: Closed</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+      </div>
+  
+      <!-- Form and Map Section -->
+      <div class="row justify-content-center">
+        <div class="col-12">
+          <div class="bg-white border rounded mb-3 shadow-sm overflow-hidden p-4" data-aos="zoom-in">
+            <div class="row">
+              <!-- Contact Form -->
+              <div class="col-12 col-md-6 mb-4 mb-md-0" data-aos="fade-right" data-aos-delay="100">
+                <form id="contactForm" action="#!">
+                  <div class="mb-3" data-aos="fade-up" data-aos-delay="200">
+                    <label for="fullname" class="form-label">Full Name <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="fullname" name="fullname" required />
+                    <div id="fullnameError" class="text-danger"></div>
+                  </div>
+                  <div class="mb-3" data-aos="fade-up" data-aos-delay="300">
+                    <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                    <input type="email" class="form-control" id="email" name="email" required />
+                    <div id="emailError" class="text-danger"></div>
+                  </div>
+                  <div class="mb-3" data-aos="fade-up" data-aos-delay="400">
+                    <label for="message" class="form-label">Message <span class="text-danger">*</span></label>
+                    <textarea
+                      rows="10"
+                      minlength="15"
+                      maxlength="500"
+                      class="form-control"
+                      id="message"
+                      name="message"
+                      rows="3"
+                      required
+                    ></textarea>
+                    <div id="messageError" class="text-danger"></div>
+                  </div>
+                  <div class="d-grid" data-aos="fade-up" data-aos-delay="500">
+                    <button class="btn btn-outline-secondary btn-lg transition-all" type="submit">
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              </div>
+  
+              <!-- Map Section -->
+              <div class="col-12 col-md-6" data-aos="fade-left" data-aos-delay="200">
+                <aside class="embed-responsive embed-responsive-16by9">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3690.0150882797034!2d-9.162586023659623!3d38.768472554300246!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1932edd62bb521%3A0x1ee0de4e32108704!2sISTEC%20-%20Instituto%20Superior%20de%20Tecnologias%20Avan%C3%A7adas!5e1!3m2!1spt-PT!2spt!4v1736072430398!5m2!1spt-PT!2spt"
+                    width="100%"
+                    height="300"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </aside>
+                <div class="mt-3 text-center">
+                  <address class="text-muted mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <strong>ChopChop Barbers & Shop</strong><br />
+                    Alameda das Linhas de Torres 179,<br />
+                    1750-142 Lisbon<br />
+                  </address>
+                  <p class="mb-2" data-aos="fade-up" data-aos-delay="400"><strong>Operating Hours:</strong></p>
+                  <ul class="list-unstyled text-muted">
+                    <li data-aos="fade-up" data-aos-delay="500">
+                      <i class="bi bi-clock me-2"></i>Mon-Sat: 9 AM - 7 PM
+                    </li>
+                    <li data-aos="fade-up" data-aos-delay="600">
+                      <i class="bi bi-clock me-2"></i>Sun: Closed
+                    </li>
+                  </ul>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</section>
+  </section>
+  

@@ -38,16 +38,21 @@ A função também é responsável por renderizar os itens, incluindo a imagem, 
 */
 export const populateCart = () => {
   const cart = storageHandler.getItem("cart") || [];
-
   const cartContainer = document.querySelector(".col-12.col-md-8");
 
   // Limpa os itens existentes no carrinho
   cartContainer.innerHTML = "";
 
   // Popula o carrinho com os itens
-  cart.forEach((item) => {
+  cart.forEach((item, index) => {
     const itemCard = document.createElement("div");
+
+    // Adiciona as classes de estilo e AOS para animação
     itemCard.className = "card mb-4 shadow-sm border-light";
+    itemCard.setAttribute("data-aos", "fade-up");
+    itemCard.setAttribute("data-aos-delay", `${100 * index}`); // Incremental delay for staggered animations
+
+    // Define o conteúdo do card do item
     itemCard.innerHTML = `
       <div class="row g-0">
         <div class="col-md-4 d-flex justify-content-center align-items-center">
@@ -84,13 +89,14 @@ export const populateCart = () => {
         </div>
       </div>`;
 
+    // Adiciona o card ao container do carrinho
     cartContainer.appendChild(itemCard);
   });
 
   // Se o carrinho estiver vazio, exibe uma mensagem com essa informação
   if (cart.length === 0) {
     cartContainer.innerHTML =
-      "<p class='text-muted text-center'>Your cart is empty.</p>";
+      "<p class='text-muted text-center' data-aos='fade-up'>Your cart is empty.</p>";
   }
 
   updateOrderDetails(); // Atualiza os detalhes do pedido (preços, totais, etc.)
