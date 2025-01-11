@@ -41,7 +41,7 @@ export const sendAppointmentEmail = (type, appointment) => {
   emailjs.send("service_kkh8ne9", templateID, templateParams).then(
     (response) => {
       // Se o envio do email for bem-sucedido, mostra uma mensagem de sucesso.
-      console.log("Email sent successfully:", response.status, response.text);
+      console.info("Email sent successfully:", response.status, response.text);
       // Exibe no console o status e a resposta do envio.
       showToast("Success", "Notification email sent.", "success");
       // Mostra uma notificação de sucesso para o usuário.

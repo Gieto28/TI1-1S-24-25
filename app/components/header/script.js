@@ -45,3 +45,17 @@ export const closeNavabrCollapse = () => {
     bsCollapse.hide(); // Fecha o menu de navegação
   }
 };
+
+export const setActiveLink = (currentPage) => {
+  // Remove a classe 'active' de todos os links
+  const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+  navLinks.forEach((link) => {
+    link.classList.remove("active");
+  });
+
+  // Adiciona a classe 'active' ao link da página atual
+  const activeLink = document.querySelector(`.navbar-nav .nav-link[onclick*="${currentPage}"]`);
+  if (activeLink) {
+    activeLink.classList.add("active");
+  }
+};

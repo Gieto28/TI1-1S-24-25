@@ -9,7 +9,8 @@ Os estados das páginas são também sincronizados com o armazenamento local.
 */
 
 // Importa funções para gestão da barra de navegação e carregamento de conteúdos específicos de páginas
-import { closeNavabrCollapse } from "../components/header/script.js";
+import { setupVideoOverlay } from "../pages/home/script.js";
+import { closeNavabrCollapse, setActiveLink } from "../components/header/script.js";
 import { loadCheckoutContent } from "../pages/checkout/script.js";
 import { loadContactContent } from "../pages/contact/script.js";
 import { loadShopContent } from "../pages/shop/script.js";
@@ -28,9 +29,10 @@ export async function loadComponent(selector, url) {
 
 // Função para carregar os componentes de cada página dinamicamente
 export const loadPage = async (pageName) => {
-  console.log("Loading page:", pageName);
 
   closeNavabrCollapse();
+
+  setActiveLink(pageName);
 
   storageHandler.setItem("currentPage", pageName);
 
@@ -51,4 +53,5 @@ const loadPageContent = {
   contact: () => loadContactContent(),
   checkout: () => loadCheckoutContent(),
   appointments: () => loadCalendarContent(),
+  home: () => setupVideoOverlay('barberVideo', 'videoOverlay')
 };

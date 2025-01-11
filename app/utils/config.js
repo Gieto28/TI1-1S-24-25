@@ -29,7 +29,7 @@ export const toggleLDMode = async () => {
 // Altera o idioma da aplicação e regista uma mensagem de erro e sai se o idioma não estiver na lista suportada
 export const toggleLanguage = async (lang) => {
     if (!config.languages.includes(lang)) {
-        console.log("Language not supported"); // Regista erro caso o idioma não seja suportado
+        console.error("Language not supported"); // Regista erro caso o idioma não seja suportado
 
         return; // Sai para evitar processamento adicional
     }

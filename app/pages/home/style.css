@@ -1,0 +1,29 @@
+@media (max-width: 576px) {
+    #videoOverlay h5 {
+        font-size: 1rem;
+    }
+
+    #videoOverlay button {
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+    }
+
+    #videoOverlay #countdown {
+        font-size: 0.875rem;
+    }
+}
+
+/* Ajustes para telas médias */
+@media (max-width: 768px) {
+    #videoOverlay h5 {
+        font-size: 1.125rem;
+    }
+
+    #videoOverlay button {
+        font-size: 0.95rem;
+    }
+
+    #videoOverlay #countdown {
+        font-size: 1rem;
+    }
+}
