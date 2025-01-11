@@ -163,7 +163,7 @@ const handleScheduledDay = (dayCell, appointment, isBeforeToday) => {
   dayCell.classList.add("bg-schedule");
   dayCell.textContent = ""; // Remove o número do dia.
   const logo = document.createElement("img");
-  logo.src = "/TI1-1S-24-25/app/assets/logos/banner-light-mode.png";
+  logo.src = "../../app/assets/logos/banner-light-mode.png";
   logo.alt = "Scheduled";
   logo.classList.add("logo-on-day");
   dayCell.appendChild(logo);
@@ -185,7 +185,7 @@ const handleScheduledDay = (dayCell, appointment, isBeforeToday) => {
 const handleUserDay = (dayCell, appointment) => {
   dayCell.classList.add("bg-user");
   const logo = document.createElement("img");
-  logo.src = "/TI1-1S-24-25/app/assets/logos/banner-light-mode.png";
+  logo.src = "../../app/assets/logos/banner-light-mode.png";
   logo.alt = "User Appointment";
   logo.classList.add("logo-on-day");
   dayCell.appendChild(logo);

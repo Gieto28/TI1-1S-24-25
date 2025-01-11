@@ -19,10 +19,7 @@ import { loadCalendarContent } from "../pages/appointments/script.js";
 
 // Função para carregar um ficheiro HTML externo e inseri-lo como um placeholder
 export async function loadComponent(selector, url) {
-  console.log("location", window.location.origin);
-  console.log("location", window.location);
-
-  return fetch("/TI1-1S-24-25" + url)
+  return fetch(url)
     .then((response) => response.text())
     .then((data) => {
       document.getElementById(selector).innerHTML = data;
