@@ -49,8 +49,6 @@ export const populateCart = () => {
 
     // Adiciona as classes de estilo e AOS para animação
     itemCard.className = "card mb-4 shadow-sm border-light";
-    itemCard.setAttribute("data-aos", "fade-up");
-    itemCard.setAttribute("data-aos-delay", `${100 * index}`); // Incremental delay for staggered animations
 
     // Define o conteúdo do card do item
     itemCard.innerHTML = `
