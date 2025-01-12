@@ -14,12 +14,12 @@ Descrição:
 5. Ferramentas visuais, como tooltips e mensagens de erro ou sucesso.
  */
 
-import { showToast } from "../../components/toast/script.js" // Importa função para exibir mensagens de erro ou sucesso
-import { sendAppointmentEmail } from "../../utils/email.js" // Importa função para enviar emails via EmailJS
+import { showToast } from "../../components/toast/script.js"; // Importa função para exibir mensagens de erro ou sucesso
+import { sendAppointmentEmail } from "../../utils/email.js"; // Importa função para enviar emails via EmailJS
 
-const today = new Date() // Data atual
-let year = today.getFullYear() // Ano atual
-let currentMonthIndex = today.getMonth() // Índice do mês atual
+const today = new Date(); // Data atual
+let year = today.getFullYear(); // Ano atual
+let currentMonthIndex = today.getMonth(); // Índice do mês atual
 
 const months = [
   // Lista de meses para exibição no cabeçalho
@@ -35,7 +35,7 @@ const months = [
   "October",
   "November",
   "December",
-]
+];
 
 const scheduledAppointments = [
   // Lista de agendamentos predefinidos (exemplo: passado e futuro)
@@ -49,44 +49,44 @@ const scheduledAppointments = [
     title: "Future Appointment",
     description: "Someone's chop scheduled for next week",
   },
-]
+];
 
 const userAppointments =
-  JSON.parse(localStorage.getItem("userAppointments")) || [] // Recupera os agendamentos do utilizador armazenados no localStorage
+  JSON.parse(localStorage.getItem("userAppointments")) || []; // Recupera os agendamentos do utilizador armazenados no localStorage
 
 const workHours = {
   offDays: [0], // Dias de folga (0 = Domingo)
-}
+};
 
 // Função principal que carrega o conteúdo do calendário
 export const loadCalendarContent = () => {
-  renderCalendarHeader() // Renderiza o cabeçalho com mês e ano
-  renderMonthGrid(currentMonthIndex) // Renderiza os dias do mês
-  attachNavigation() // Configura os botões de navegação entre meses
-}
+  renderCalendarHeader(); // Renderiza o cabeçalho com mês e ano
+  renderMonthGrid(currentMonthIndex); // Renderiza os dias do mês
+  attachNavigation(); // Configura os botões de navegação entre meses
+};
 
 // Renderiza o cabeçalho do calendário com o mês e ano atuais
 const renderCalendarHeader = () => {
-  const monthHeader = document.getElementById("currentMonth")
+  const monthHeader = document.getElementById("currentMonth");
   if (monthHeader) {
-    monthHeader.textContent = `${months[currentMonthIndex]} ${year}`
+    monthHeader.textContent = `${months[currentMonthIndex]} ${year}`;
   }
-}
+};
 
 // Cria uma tooltip que exibe informações sobre o agendamento
 const createHoverTooltip = (dayCell, appointment, isUserAppointment) => {
-  if (window.innerWidth <= 768) return // Não exibe tooltip em dispositivos móveis
+  if (window.innerWidth <= 768) return; // Não exibe tooltip em dispositivos móveis
 
-  const tooltip = document.createElement("div")
-  tooltip.classList.add("hover-tooltip")
-  tooltip.style.position = "fixed" // A tooltip segue o cursor
-  tooltip.style.backgroundColor = "#fff"
-  tooltip.style.border = "1px solid #ccc"
-  tooltip.style.borderRadius = "5px"
-  tooltip.style.padding = "10px"
-  tooltip.style.boxShadow = "0px 4px 6px rgba(0, 0, 0, 0.1)"
-  tooltip.style.display = "none"
-  tooltip.style.zIndex = "1000"
+  const tooltip = document.createElement("div");
+  tooltip.classList.add("hover-tooltip");
+  tooltip.style.position = "fixed"; // A tooltip segue o cursor
+  tooltip.style.backgroundColor = "#fff";
+  tooltip.style.border = "1px solid #ccc";
+  tooltip.style.borderRadius = "5px";
+  tooltip.style.padding = "10px";
+  tooltip.style.boxShadow = "0px 4px 6px rgba(0, 0, 0, 0.1)";
+  tooltip.style.display = "none";
+  tooltip.style.zIndex = "1000";
 
   // Conteúdo dinâmico da tooltip (nome, descrição, data, etc)
   tooltip.innerHTML = `
@@ -110,119 +110,119 @@ const createHoverTooltip = (dayCell, appointment, isUserAppointment) => {
         ? `<div style='margin-top: 5px;'>Email: ${appointment.email}</div>`
         : ""
     }
-  `
+  `;
 
-  document.body.appendChild(tooltip) // Adiciona a tooltip ao documento
+  document.body.appendChild(tooltip); // Adiciona a tooltip ao documento
 
   // Exibe a tooltip ao passar o mouse
   dayCell.addEventListener("mouseover", (e) => {
-    tooltip.style.display = "block"
-    tooltip.style.top = `${e.clientY + 10}px`
-    tooltip.style.left = `${e.clientX + 10}px`
-  })
+    tooltip.style.display = "block";
+    tooltip.style.top = `${e.clientY + 10}px`;
+    tooltip.style.left = `${e.clientX + 10}px`;
+  });
 
   // Move a tooltip conforme o cursor se move
   dayCell.addEventListener("mousemove", (e) => {
-    tooltip.style.top = `${e.clientY + 10}px`
-    tooltip.style.left = `${e.clientX + 10}px`
-  })
+    tooltip.style.top = `${e.clientY + 10}px`;
+    tooltip.style.left = `${e.clientX + 10}px`;
+  });
 
   // Esconde a tooltip quando o mouse sai
   dayCell.addEventListener("mouseout", () => {
-    tooltip.style.display = "none"
-  })
-}
+    tooltip.style.display = "none";
+  });
+};
 
 // Configura o comportamento para dias inválidos (passados)
 const handleInvalidDay = (dayCell) => {
-  dayCell.classList.add("bg-light", "text-muted")
+  dayCell.classList.add("bg-light", "text-muted");
   dayCell.addEventListener("click", () => {
     showToast(
       "Unavailable Date",
       "You cannot select a date in the past",
       "failure"
-    )
-  })
-}
+    );
+  });
+};
 
 // Configura o comportamento para dias de folga
 const handleOffDay = (dayCell) => {
-  dayCell.classList.add("off-day")
-  dayCell.textContent = "✖" // Exibe um ícone em vez do número do dia
+  dayCell.classList.add("off-day");
+  dayCell.textContent = "✖"; // Exibe um ícone em vez do número do dia
   dayCell.addEventListener("click", () => {
     showToast(
       "Closed Day",
       "Appointments cannot be booked on this day",
       "warning"
-    )
-  })
-}
+    );
+  });
+};
 
 // Configura o comportamento para dias já agendados
 const handleScheduledDay = (dayCell, appointment, isBeforeToday) => {
-  dayCell.classList.add("bg-schedule")
-  dayCell.textContent = "" // Remove o número do dia
-  const logo = document.createElement("img")
-  logo.src = "../../app/assets/logos/banner-light-mode.png"
-  logo.alt = "Scheduled" // Ícone de agendamento
-  logo.classList.add("logo-on-day")
-  dayCell.appendChild(logo)
+  dayCell.classList.add("bg-schedule");
+  dayCell.textContent = ""; // Remove o número do dia
+  const logo = document.createElement("img");
+  logo.src = "../../TI1-1S-24-25/app/assets/logos/banner-light-mode.png";
+  logo.alt = "Scheduled"; // Ícone de agendamento
+  logo.classList.add("logo-on-day");
+  dayCell.appendChild(logo);
 
-  createHoverTooltip(dayCell, appointment) // Adiciona tooltip ao dia
+  createHoverTooltip(dayCell, appointment); // Adiciona tooltip ao dia
 
   // Adiciona evento de clique para exibir aviso
   dayCell.addEventListener("click", (e) => {
-    e.stopPropagation()
+    e.stopPropagation();
     showToast(
       "Scheduled Date",
       isBeforeToday
         ? "This is a past scheduled appointment" // Aviso para dias no passado
         : "Date already scheduled There will already be a chop on this day", // Aviso para dias já agendados
       "warning"
-    )
-  })
-}
+    );
+  });
+};
 
 // Configura o comportamento para dias reservados pelo utilizador
 const handleUserDay = (dayCell, appointment) => {
-  dayCell.classList.add("bg-user")
-  const logo = document.createElement("img")
-  logo.src = "../../app/assets/logos/banner-light-mode.png"
-  logo.alt = "User Appointment" // Ícone de reserva do utilizador
-  logo.classList.add("logo-on-day")
-  dayCell.appendChild(logo)
+  dayCell.classList.add("bg-user");
+  const logo = document.createElement("img");
+  logo.src = "../../TI1-1S-24-25/app/assets/logos/banner-light-mode.png";
+  logo.alt = "User Appointment"; // Ícone de reserva do utilizador
+  logo.classList.add("logo-on-day");
+  dayCell.appendChild(logo);
 
-  createHoverTooltip(dayCell, appointment, true) // Tooltip personalizada
+  createHoverTooltip(dayCell, appointment, true); // Tooltip personalizada
 
   // Adiciona evento para editar a reserva ao clicar
   dayCell.addEventListener("click", (e) => {
-    e.stopPropagation()
-    showEditModal(appointment) // Abre o modal de edição
-  })
-}
+    e.stopPropagation();
+    showEditModal(appointment); // Abre o modal de edição
+  });
+};
 
 // Configura o comportamento para dias válidos para agendamento
 const handleValidDay = (dayCell, currentDate) => {
-  dayCell.classList.add("valid-day")
+  dayCell.classList.add("valid-day");
   // Adiciona evento para abrir modal de agendamento ao clicar
   dayCell.addEventListener("click", () => {
-    showAddModal(currentDate)
-  })
-}
+    showAddModal(currentDate);
+  });
+};
 
 // Renderiza a grelha mensal no calendário
 const renderMonthGrid = (monthIndex) => {
-  const firstDay = new Date(year, monthIndex, 1) // Primeiro dia do mês
-  const lastDay = new Date(year, monthIndex + 1, 0) // Último dia do mês
-  const daysInMonth = lastDay.getDate()
-  const startDay = firstDay.getDay() // Dia da semana do primeiro dia
+  const firstDay = new Date(year, monthIndex, 1); // Primeiro dia do mês
+  const lastDay = new Date(year, monthIndex + 1, 0); // Último dia do mês
+  const daysInMonth = lastDay.getDate();
+  const startDay = firstDay.getDay(); // Dia da semana do primeiro dia
 
-  const calendarGrid = document.getElementById("calendarGrid")
-  calendarGrid.innerHTML = "" // Limpa a grelha atual
+  const calendarGrid = document.getElementById("calendarGrid");
+  calendarGrid.innerHTML = ""; // Limpa a grelha atual
 
-  const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-  const weekRow = document.createElement("div")
-  weekRow.classList.add("row", "text-center", "fw-bold")
+  const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const weekRow = document.createElement("div");
+  weekRow.classList.add("row", "text-center", "fw-bold");
   // Adiciona cabeçalho com os dias da semana
   weekdays.forEach((day) => {
     const dayColumn = document.createElement("div");
@@ -540,7 +540,10 @@ const showEditModal = (appointment) => {
     if (index !== -1) {
       // Remove o agendamento e actualiza o armazenamento local
       userAppointments.splice(index, 1);
-      localStorage.setItem("userAppointments", JSON.stringify(userAppointments));
+      localStorage.setItem(
+        "userAppointments",
+        JSON.stringify(userAppointments)
+      );
 
       // Actualiza a grelha e fecha o modal
       renderMonthGrid(currentMonthIndex);

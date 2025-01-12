@@ -206,9 +206,9 @@ const renderCarousel = () => {
 
   // Define as imagens do carrossel que vão ser exibidas na loja
   const carouselImages = [
-    "../../app/assets/carousel/shop/products_1.jpg",
-    "../../app/assets/carousel/shop/products_2.jpg",
-    "../../app/assets/carousel/shop/products_3.jpg",
+    "../../TI1-1S-24-25/app/assets/carousel/shop/products_1.jpg",
+    "../../TI1-1S-24-25/app/assets/carousel/shop/products_2.jpg",
+    "../../TI1-1S-24-25/app/assets/carousel/shop/products_3.jpg",
   ];
 
   // Define o id para o carrossel
