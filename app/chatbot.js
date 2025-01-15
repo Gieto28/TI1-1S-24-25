@@ -1,5 +1,5 @@
 /*
-Este ficheiro: Integraa o Landbot à aplicação, configurando um popup interativo.
+Este ficheiro: Integra o Landbot à aplicação, configurando um popup interativo.
  
 Descrição:
 1. Inicializa o Landbot ao interagir pela primeira vez com a página (mouseover ou toque).
@@ -35,10 +35,10 @@ function initLandbot() {
     s.addEventListener("load", function () {
       // Adiciona um evento para configurar o Landbot após o carregamento do script.
 
-      myLandbot = new Landbot.Popup({
-        // Inicializa o Landbot Popup com a URL de configuração.
+      myLandbot = new Landbot.Livechat({
+        // Inicializa o Landbot Live Chat com a URL de configuração.
         configUrl:
-          "https://storage.googleapis.com/landbot.online/v3/H-2739780-GLAS9H2W1ON2JSUM/index.json",
+          "https://storage.googleapis.com/landbot.online/v3/H-2748028-24OJ9SS10M0LOBB3/index.json",
       });
     });
 
